@@ -30,7 +30,7 @@ public abstract class Effect {
 	 * So you can occupy this thread without any problems.
 	 * @param launchpad the launchpad to show the action on.
 	 */
-	public abstract void buttonDown(BufferedLaunchpad launchpad);
+	public void buttonDown(BufferedLaunchpad launchpad){};
 	
 	/**
 	 * called when the button on the launchpad is pressed.
@@ -38,14 +38,10 @@ public abstract class Effect {
 	 * So you can occupy this thread without any problems.
 	 * @param launchpad the launchpad to show the action on.
 	 */
-	public abstract void buttonUp(BufferedLaunchpad launchpad);
+	public void buttonUp(BufferedLaunchpad launchpad){};
 	
 	public Option<?>[] getOptions(){
 		return null;
-	}
-	
-	public void onOptionsChange(){
-		
 	}
 	
 	@Override

@@ -16,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.LaunchpadLightCreator;
 import com.sinius15.lights.Option;
-import com.sinius15.lights.Rack;
 import com.sinius15.lights.effects.NoneEffect;
 
 public class ButtonEditFrame extends JFrameLayered {

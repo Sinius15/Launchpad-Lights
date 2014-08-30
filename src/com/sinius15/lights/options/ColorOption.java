@@ -4,18 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
-import javax.swing.SpinnerNumberModel;
 
 import com.sinius15.launchpad.Launchpad;
-import com.sinius15.launchpad.events.ButtonListener;
-import com.sinius15.launchpad.pattern.LaunchpadPattern;
 import com.sinius15.lights.Option;
 
 public class ColorOption extends Option<Integer> {
@@ -25,6 +22,8 @@ public class ColorOption extends Option<Integer> {
 	private ButtonGroup butGroup = new ButtonGroup();
 	private int selectedColor = Launchpad.COLOR_GREEN_FULL;
 	
+	private static final int RANDOMCOLOR = -123456;
+	
 	public ColorOption(){
 		chooser = new JPanel();
 		chooser.setLayout(null);
@@ -32,9 +31,9 @@ public class ColorOption extends Option<Integer> {
 		chooser.setSize(200, 250);
 		chooser.setPreferredSize(new Dimension(200, 250));
 		
-		JToggleButton b = addButton(Launchpad.COLOR_TRANSPARANT, Color.gray);
-		b.setBounds(0, 200, 200, 50);
-		b.setText("Transparent");
+		JToggleButton b2 = addButton(RANDOMCOLOR, Color.GRAY);
+		b2.setBounds(0, 200, 200, 50);
+		b2.setText("Random Color");
 		
 		//add buttons
 		for (int green = 0; green < 4; green++) {
@@ -56,22 +55,20 @@ public class ColorOption extends Option<Integer> {
 	}
 
 	@Override
-	public boolean validate(Integer value) {
-		return value > 0;
-	}
-
-	@Override
 	public Integer getValue() {
+		if(selectedColor == RANDOMCOLOR)
+			return randomColor();
 		return selectedColor;
 	}
 
-	@Override
-	public Integer getDefaultValue() {
-		return Launchpad.COLOR_GREEN_FULL;
+	private static int[] randomColors = new int[]{Launchpad.COLOR_AMBER_FULL, Launchpad.COLOR_GREEN_FULL, Launchpad.COLOR_RED_FULL,
+			Launchpad.COLOR_AMBER_LOW, Launchpad.COLOR_GREEN_LOW, Launchpad.COLOR_RED_LOW};
+	public static int randomColor(){
+		return randomColors[new Random().nextInt(randomColors.length)];
 	}
 		
 	private JToggleButton addButton(int lpColor, Color rgbColor){
-		JToggleButton b = new JToggleButton("");
+		JToggleButton b = new JToggleButton("***");
 		butGroup.add(b);
 		
 		b.setBorder(BorderFactory.createEmptyBorder());

@@ -8,10 +8,7 @@ public abstract class Option<T> {
 	
 	public abstract String getTitle();
 	
-	public abstract boolean validate(T value);
-	
 	public abstract T getValue();
 	
-	public abstract T getDefaultValue();
 	
 }

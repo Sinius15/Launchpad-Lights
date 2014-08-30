@@ -7,6 +7,8 @@ import javax.sound.midi.MidiUnavailableException;
 
 import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.LaunchpadException;
+import com.sinius15.lights.effects.BlockEffect;
+import com.sinius15.lights.effects.ExplodingCross;
 import com.sinius15.lights.effects.NoneEffect;
 import com.sinius15.lights.effects.StarEffect;
 import com.sinius15.lights.effects.WaveEffect;
@@ -24,6 +26,8 @@ public class LaunchpadLightCreator {
 		effects.add(NoneEffect.class);
 		effects.add(WaveEffect.class);
 		effects.add(StarEffect.class);
+		effects.add(BlockEffect.class);
+		effects.add(ExplodingCross.class);
 		
 		try {
 			pad = new BufferedLaunchpad("Launchpad S");

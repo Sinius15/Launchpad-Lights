@@ -7,12 +7,13 @@ import com.sinius15.lights.Option;
 
 public class ComboBoxOption extends Option<String>{
 
-	private String title, defaultValue;
+	private String title;
 	private JComboBox<String> comp;
 	
 	public ComboBoxOption(String title, String[] values, String defaultValue){
 		this.title = title;
 		this.comp = new JComboBox<>(values);
+		this.comp.setSelectedItem(defaultValue);
 	}
 	
 	@Override
@@ -26,20 +27,8 @@ public class ComboBoxOption extends Option<String>{
 	}
 
 	@Override
-	public boolean validate(String value) {
-		return true;
-	}
-
-	@Override
 	public String getValue() {
 		return (String) comp.getSelectedItem();
 	}
-
-	@Override
-	public String getDefaultValue() {
-		return defaultValue;
-	}
-	
-	
 	
 }

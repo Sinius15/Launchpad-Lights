@@ -8,6 +8,12 @@ import com.sinius15.lights.Option;
 public class BooleanOption extends Option<Boolean> {
 
 	JCheckBox box = new JCheckBox();
+	String title;
+	
+	public BooleanOption(String title, boolean defaultValue){
+		this.title = title;
+		box.setSelected(defaultValue);
+	}
 	
 	@Override
 	public JComponent getComponent() {
@@ -16,22 +22,12 @@ public class BooleanOption extends Option<Boolean> {
 
 	@Override
 	public String getTitle() {
-		return "boolean";
+		return title;
 	}
-
-	@Override
-	public boolean validate(Boolean value) {
-		return true;
-	}
-
+	
 	@Override
 	public Boolean getValue() {
 		return box.isSelected();
-	}
-
-	@Override
-	public Boolean getDefaultValue() {
-		return false;
 	}
 
 }
