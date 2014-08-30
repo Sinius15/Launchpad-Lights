@@ -10,8 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import com.sinius15.launchpad.events.ButtonListener;
-import com.sinius15.lights.effects.StarEffect;
-import com.sinius15.lights.effects.WaveEffect;
+import com.sinius15.lights.ui.ButtonEditFrame;
 import com.sinius15.lights.ui.ColoredButton;
 
 public class Rack extends JPanel implements ButtonListener{
@@ -20,7 +19,7 @@ public class Rack extends JPanel implements ButtonListener{
 	
 	public ColoredButton[][] buttons = new ColoredButton[9][9];
 	
-	public Effect[][] effects = new Effect[9][9];
+	public Effect[][] effects = new Effect[9][9]; //row, col
 			
 	public Rack() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -40,17 +39,18 @@ public class Rack extends JPanel implements ButtonListener{
 	}
 	
 	private void addButton(final int col, final int row){
-		ColoredButton newBtn = new ColoredButton(row+";"+col);
+		ColoredButton newBtn = new ColoredButton(row,col);
 		newBtn.setForeground(Color.black);
 		newBtn.setBackground(Color.white);
 		GridBagConstraints newGbc = new GridBagConstraints();
 		newGbc.insets = new Insets(0, 0, 5, 5);
 		newGbc.gridx = col;
 		newGbc.gridy = row;
+		
 		newBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//todo
+				new ButtonEditFrame(row, col).setVisible(true);
 			}
 		});
 		add(newBtn, newGbc);

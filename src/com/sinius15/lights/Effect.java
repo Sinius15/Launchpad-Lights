@@ -6,7 +6,7 @@ public abstract class Effect {
 	
 	protected int row, colomn;
 	
-	public Effect(int row, int colomn, String saveData){
+	public Effect(int row, int colomn){
 		this.row = row;
 		this.colomn = colomn;
 	}
@@ -40,21 +40,17 @@ public abstract class Effect {
 	 */
 	public abstract void buttonUp(BufferedLaunchpad launchpad);
 	
-	/**
-	 * called when the button 'prefrences' is pressed. This should 
-	 * show a new JFrame with prefferences on it. <b>If the preference
-	 * screen is closed, </b>
-	 */
-	public void showSettingsFrame(){
-		onClosePreferences();
+	public Option<?>[] getOptions(){
+		return null;
 	}
 	
-	public final void onClosePreferences(){
+	public void onOptionsChange(){
 		
 	}
 	
-	public String getSaveData(){
-		return null;
+	@Override
+	public String toString() {
+		return getName();
 	}
 	
 }

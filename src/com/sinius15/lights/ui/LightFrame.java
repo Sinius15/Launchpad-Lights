@@ -8,14 +8,12 @@ import javax.swing.border.EmptyBorder;
 
 import com.sinius15.lights.Rack;
 
-public class LightFrame extends JFrame {
+public class LightFrame extends JFrameLayered {
 	
 	private static final long serialVersionUID = 2665207274016108428L;
 	private JPanel contentPane;
 	
-	public Rack launchRack;
-	
-	public LightFrame() {
+	public LightFrame(Rack rack) {
 		setTitle("LightFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 530, 328);
@@ -24,8 +22,7 @@ public class LightFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		launchRack = new Rack();
-		contentPane.add(launchRack, BorderLayout.CENTER);
+		contentPane.add(rack, BorderLayout.CENTER);
 	}
 	
 }

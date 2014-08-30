@@ -3,17 +3,16 @@ package com.sinius15.lights.effects;
 import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
+import com.sinius15.lights.Option;
+import com.sinius15.lights.options.ColorOption;
 
 public class StarEffect extends Effect {
 	
-	private int color;
+	private ColorOption color;
 	
-	public StarEffect(int row, int colomn, String saveData){
-		super(row, colomn, saveData);
-		if(saveData == null)
-			this.color = Launchpad.COLOR_GREEN_FULL;
-		else
-			this.color = Integer.parseInt(saveData);
+	public StarEffect(int row, int colomn){
+		super(row, colomn);
+		color = new ColorOption();
 	}
 	
 	@Override
@@ -48,9 +47,14 @@ public class StarEffect extends Effect {
 		if(row < 0 || row > 8 || col < 0 || col > 8)
 			return;
 		if(on)
-			pad.setLedOn(col, row, color);
+			pad.setLedOn(col, row, color.getValue());
 		else
 			pad.setLedOff(col, row);
+	}
+	
+	@Override
+	public Option<?>[] getOptions() {
+		return new Option<?>[]{color};
 	}
 	
 }
