@@ -4,6 +4,9 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import javax.sound.midi.MidiUnavailableException;
+import javax.swing.JOptionPane;
+
+import org.jsresources.MidiCommon;
 
 import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.LaunchpadException;
@@ -29,8 +32,12 @@ public class LaunchpadLightCreator {
 		effects.add(BlockEffect.class);
 		effects.add(ExplodingCross.class);
 		
+		String deviceName = (String) JOptionPane.showInputDialog(null, "Chose your launchpad!",
+		        "Launchpad Selector", JOptionPane.QUESTION_MESSAGE, null, MidiCommon.listDevices(true, false), "Launchpad S");
+		
+		
 		try {
-			pad = new BufferedLaunchpad("Launchpad S");
+			pad = new BufferedLaunchpad(deviceName);
 			pad.open();
 			
 			rack = new Rack();

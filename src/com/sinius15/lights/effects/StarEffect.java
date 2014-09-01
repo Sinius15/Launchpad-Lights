@@ -1,18 +1,23 @@
 package com.sinius15.lights.effects;
 
+import javax.swing.GroupLayout.Alignment;
+
 import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
 import com.sinius15.lights.options.ColorOption;
+import com.sinius15.lights.options.KeepAliveOption;
 
 public class StarEffect extends Effect {
 	
 	private ColorOption color;
+	private KeepAliveOption alave;
 	
 	public StarEffect(int row, int colomn){
 		super(row, colomn);
 		color = new ColorOption();
+		alave = new KeepAliveOption();
 	}
 	
 	@Override
@@ -54,7 +59,7 @@ public class StarEffect extends Effect {
 	
 	@Override
 	public Option<?>[] getOptions() {
-		return new Option<?>[]{color};
+		return new Option<?>[]{alave, color};
 	}
 	
 }
