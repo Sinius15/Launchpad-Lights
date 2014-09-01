@@ -23,6 +23,9 @@ public class LightFrame extends JFrameLayered {
 		setContentPane(contentPane);
 		
 		contentPane.add(rack, BorderLayout.CENTER);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.SOUTH);
 	}
 	
 }

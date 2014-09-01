@@ -23,7 +23,6 @@ public class KeepAliveOption extends Option<Integer> implements ChangeListener{
 	public KeepAliveOption(){
 		panel = new JPanel();
 		checkBox = new JCheckBox();
-		checkBox.setSelected(true);
 		
 		checkBox.addChangeListener(this);
 		
@@ -45,24 +44,30 @@ public class KeepAliveOption extends Option<Integer> implements ChangeListener{
 
 	@Override
 	public String getTitle() {
-		return "Remove pattern when button release?";
+		return "<html>Keep pattern visable if the launchapd <br>button is released?</html>";
 	}
 
+	/**
+	 * @return -1 if the checkbox is not selected. 
+	 * Returns the selected value if the checkbox is selected.<br><br>
+	 * So -1 if the pattern should hide on button release.
+	 * And a number >=0 if he should not hide when button release
+	 */
 	@Override
 	public Integer getValue() {
-		return null;
+		return checkBox.isSelected() ? (int)spinner.getValue() : -1;
 	}
 
 	private boolean isAdded = true;
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		if(!isAdded && !checkBox.isSelected()){
+		if(!isAdded && checkBox.isSelected()){
 			panel.add(label);
 			panel.add(spinner);
 			panel.revalidate();
 			isAdded = true;
 		}
-		if(isAdded && checkBox.isSelected()){
+		if(isAdded && !checkBox.isSelected()){
 			panel.remove(label);
 			panel.remove(spinner);
 			panel.revalidate();

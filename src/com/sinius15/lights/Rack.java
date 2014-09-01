@@ -6,12 +6,17 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import com.sinius15.launchpad.events.ButtonListener;
 import com.sinius15.lights.ui.ButtonEditFrame;
 import com.sinius15.lights.ui.ColoredButton;
+import com.sinius15.lights.ui.EffectSettingsFrame;
 
 public class Rack extends JPanel implements ButtonListener{
 	
@@ -53,6 +58,30 @@ public class Rack extends JPanel implements ButtonListener{
 				new ButtonEditFrame(row, col).setVisible(true);
 			}
 		});
+
+		final JPopupMenu p = new JPopupMenu();
+		JMenuItem item = new JMenuItem("Effect Settings");
+		item.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Effect eff = effects[row][col];
+				Option<?>[] options = eff.getOptions();
+				if(options != null)
+					new EffectSettingsFrame(options).setVisible(true);
+			}
+		});
+		p.add(item);
+		
+		newBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if(effects[row][col] != null && e.isPopupTrigger()){
+					p.show(e.getComponent(), e.getX(), e.getY());
+				}
+				super.mouseReleased(e);
+			}
+		});
+		
 		add(newBtn, newGbc);
 		buttons[row][col] = newBtn;
 	}
@@ -64,7 +93,7 @@ public class Rack extends JPanel implements ButtonListener{
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-						effects[row][colomn].buttonDown(LaunchpadLightCreator.pad);
+					effects[row][colomn].buttonDown(LaunchpadLightCreator.pad);
 				}
 			}).start();
 		

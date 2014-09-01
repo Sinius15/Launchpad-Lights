@@ -63,8 +63,9 @@ public class ColorOption extends Option<Integer> {
 
 	private static int[] randomColors = new int[]{Launchpad.COLOR_AMBER_FULL, Launchpad.COLOR_GREEN_FULL, Launchpad.COLOR_RED_FULL,
 			Launchpad.COLOR_AMBER_LOW, Launchpad.COLOR_GREEN_LOW, Launchpad.COLOR_RED_LOW};
+	private static Random random = new Random();
 	public static int randomColor(){
-		return randomColors[new Random().nextInt(randomColors.length)];
+		return randomColors[random.nextInt(randomColors.length)];
 	}
 		
 	private JToggleButton addButton(int lpColor, Color rgbColor){

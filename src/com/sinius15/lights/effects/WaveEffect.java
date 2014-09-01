@@ -4,22 +4,22 @@ import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
-import com.sinius15.lights.Util;
 import com.sinius15.lights.options.ColorOption;
-import com.sinius15.lights.options.ComboBoxOption;
+import com.sinius15.lights.options.DirectionOption;
 import com.sinius15.lights.options.SpeedOption;
+import com.sinius15.lights.util.Util;
 
 public class WaveEffect extends Effect{
 	
 	private ColorOption color;
 	private SpeedOption speed;
-	private ComboBoxOption direction;
+	private DirectionOption direction;
 	
 	public WaveEffect(int row, int colomn){
 		super(row, colomn);
 		color = new ColorOption();
 		speed = new SpeedOption(30);
-		direction = new ComboBoxOption("What way to do stuff?", Dir.Values(), Dir.TOP_BOT.name);
+		direction = new DirectionOption();
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class WaveEffect extends Effect{
 
 	@Override
 	public void buttonDown(BufferedLaunchpad launchpad) {
-		switch (Dir.fromString(direction.getValue())) {
+		switch (direction.getValue()) {
 			case BOT_TOP:
 				for(int row = 8; row >= 0; row--){
 					Util.colorRow(launchpad, color.getValue(), row);
@@ -78,32 +78,6 @@ public class WaveEffect extends Effect{
 			Thread.sleep(speed.getValue());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	private enum Dir{
-		TOP_BOT("Top to Bottom"), BOT_TOP("Bottom to Top"), LEF_RIG("Left to Right"), RIG_LEF("Right to Left");
-		
-		public String name;
-		
-		Dir(String name){
-			this.name = name;
-		}
-		
-		public String toString(){
-			return name;
-		}
-		
-		public static Dir fromString(String inName){
-			for(Dir d : Dir.values()){
-				if(d.name.equals(inName))
-					return d;
-			}
-			return null;
-		}
-		
-		public static String[] Values(){
-			return new String[]{TOP_BOT.name, BOT_TOP.name, LEF_RIG.name, RIG_LEF.name};
 		}
 	}
 	

@@ -1,7 +1,5 @@
 package com.sinius15.lights.effects;
 
-import javax.swing.GroupLayout.Alignment;
-
 import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
@@ -13,6 +11,8 @@ public class StarEffect extends Effect {
 	
 	private ColorOption color;
 	private KeepAliveOption alave;
+	
+	private boolean isPressed = false, shouldReleaseOnButtonUp = false;
 	
 	public StarEffect(int row, int colomn){
 		super(row, colomn);
@@ -32,6 +32,35 @@ public class StarEffect extends Effect {
 	
 	@Override
 	public void buttonDown(BufferedLaunchpad launchpad) {
+		isPressed = true;
+		showPattern(launchpad);
+		if (alave.getValue() >= 0) {
+			shouldReleaseOnButtonUp = false;
+				
+			try {
+				Thread.sleep(alave.getValue());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if(isPressed)
+				shouldReleaseOnButtonUp = true;
+			else
+				removePattern(launchpad);
+		}else{
+			shouldReleaseOnButtonUp = true;
+		}
+	}
+	
+	@Override
+	public void buttonUp(BufferedLaunchpad launchpad) {
+		isPressed = false;
+		if(shouldReleaseOnButtonUp){
+			removePattern(launchpad);
+			shouldReleaseOnButtonUp = false;
+		}
+	}
+	
+	private void showPattern(Launchpad launchpad){
 		setLightIfExist(launchpad, row, colomn, true);
 		setLightIfExist(launchpad, row+1, colomn, true);
 		setLightIfExist(launchpad, row-1, colomn, true);
@@ -39,8 +68,7 @@ public class StarEffect extends Effect {
 		setLightIfExist(launchpad, row, colomn-1, true);
 	}
 	
-	@Override
-	public void buttonUp(BufferedLaunchpad launchpad) {
+	private void removePattern(Launchpad launchpad){
 		setLightIfExist(launchpad, row, colomn, false);
 		setLightIfExist(launchpad, row+1, colomn, false);
 		setLightIfExist(launchpad, row-1, colomn, false);

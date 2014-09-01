@@ -13,6 +13,7 @@ import com.sinius15.launchpad.LaunchpadException;
 import com.sinius15.lights.effects.BlockEffect;
 import com.sinius15.lights.effects.ExplodingCross;
 import com.sinius15.lights.effects.NoneEffect;
+import com.sinius15.lights.effects.ShotEffect;
 import com.sinius15.lights.effects.StarEffect;
 import com.sinius15.lights.effects.WaveEffect;
 import com.sinius15.lights.ui.LightFrame;
@@ -26,8 +27,11 @@ public class LaunchpadLightCreator {
 	
 	public static void main(String[] args) {
 		
+		Shape.init();
+		
 		effects.add(NoneEffect.class);
 		effects.add(WaveEffect.class);
+		effects.add(ShotEffect.class);
 		effects.add(StarEffect.class);
 		effects.add(BlockEffect.class);
 		effects.add(ExplodingCross.class);
