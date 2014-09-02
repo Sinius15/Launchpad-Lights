@@ -14,6 +14,8 @@ import com.sinius15.lights.Option;
 
 public class KeepAliveOption extends Option<Integer> implements ChangeListener{
 
+	private static final long serialVersionUID = 3482203761842048492L;
+	
 	private JPanel panel;
 	private JCheckBox checkBox;
 	private JSpinner spinner;
@@ -72,6 +74,22 @@ public class KeepAliveOption extends Option<Integer> implements ChangeListener{
 			panel.remove(spinner);
 			panel.revalidate();
 			isAdded = false;
+		}
+	}
+
+	@Override
+	public String getSaveData() {
+		return Integer.toString(getValue());
+	}
+
+	@Override
+	public void initFromSaveData(String saveData) {
+		int in = Integer.valueOf(saveData);
+		if(in  == -1){
+			checkBox.setSelected(false);
+		}else{
+			checkBox.setSelected(true);
+			spinner.setValue(in);
 		}
 	}
 

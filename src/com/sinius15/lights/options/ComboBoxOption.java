@@ -7,6 +7,8 @@ import com.sinius15.lights.Option;
 
 public class ComboBoxOption extends Option<String>{
 
+	private static final long serialVersionUID = -4512945906346843442L;
+	
 	private String title;
 	private JComboBox<String> comp;
 	
@@ -29,6 +31,16 @@ public class ComboBoxOption extends Option<String>{
 	@Override
 	public String getValue() {
 		return (String) comp.getSelectedItem();
+	}
+
+	@Override
+	public String getSaveData() {
+		return Integer.toString(comp.getSelectedIndex());
+	}
+
+	@Override
+	public void initFromSaveData(String saveData) {
+		comp.setSelectedIndex(Integer.valueOf(saveData));
 	}
 	
 }

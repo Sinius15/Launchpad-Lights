@@ -4,6 +4,7 @@ import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
+import com.sinius15.lights.Save;
 import com.sinius15.lights.Shape;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.ComboBoxOption;
@@ -12,10 +13,16 @@ import com.sinius15.lights.options.SpeedOption;
 
 public class ShotEffect extends Effect {
 	
-	private ColorOption colorChooser;
-	private DirectionOption dirChooser;
-	private SpeedOption speedChooser;
-	private ComboBoxOption shapeChooser;
+	private static final long serialVersionUID = 7283296373490151239L;
+	
+	@Save
+	public ColorOption colorChooser;
+	@Save
+	public DirectionOption dirChooser;
+	@Save
+	public SpeedOption speedChooser;
+	@Save
+	public ComboBoxOption shapeChooser;
 	
 	public ShotEffect(int row, int colomn) {
 		super(row, colomn);

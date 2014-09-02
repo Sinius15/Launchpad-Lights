@@ -4,25 +4,36 @@ import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
+import com.sinius15.lights.Save;
+import com.sinius15.lights.Shape;
 import com.sinius15.lights.options.ColorOption;
+import com.sinius15.lights.options.ComboBoxOption;
 import com.sinius15.lights.options.KeepAliveOption;
+import com.sinius15.lights.util.Direction;
 
-public class StarEffect extends Effect {
+public class ShapeEffect extends Effect {
 	
-	private ColorOption color;
-	private KeepAliveOption alave;
+	private static final long serialVersionUID = -8830383794824144746L;
+	
+	@Save
+	public ColorOption colorChooser;
+	@Save
+	public KeepAliveOption alave;
+	@Save
+	public ComboBoxOption shapeChooser;
 	
 	private boolean isPressed = false, shouldReleaseOnButtonUp = false;
 	
-	public StarEffect(int row, int colomn){
+	public ShapeEffect(int row, int colomn){
 		super(row, colomn);
-		color = new ColorOption();
+		colorChooser = new ColorOption();
 		alave = new KeepAliveOption();
+		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
 	}
 	
 	@Override
 	public String getName() {
-		return "Star";
+		return "Pattern Effect";
 	}
 	
 	@Override
@@ -61,33 +72,22 @@ public class StarEffect extends Effect {
 	}
 	
 	private void showPattern(Launchpad launchpad){
-		setLightIfExist(launchpad, row, colomn, true);
-		setLightIfExist(launchpad, row+1, colomn, true);
-		setLightIfExist(launchpad, row-1, colomn, true);
-		setLightIfExist(launchpad, row, colomn+1, true);
-		setLightIfExist(launchpad, row, colomn-1, true);
+		Shape.stringToShape(
+				shapeChooser.getValue())
+		.draw(launchpad, colorChooser.getValue(), row, colomn, 
+				Direction.BOT_TOP);
 	}
 	
 	private void removePattern(Launchpad launchpad){
-		setLightIfExist(launchpad, row, colomn, false);
-		setLightIfExist(launchpad, row+1, colomn, false);
-		setLightIfExist(launchpad, row-1, colomn, false);
-		setLightIfExist(launchpad, row, colomn+1, false);
-		setLightIfExist(launchpad, row, colomn-1, false);
-	}
-	
-	private void setLightIfExist(Launchpad pad, int row, int col, boolean on){
-		if(row < 0 || row > 8 || col < 0 || col > 8)
-			return;
-		if(on)
-			pad.setLedOn(col, row, color.getValue());
-		else
-			pad.setLedOff(col, row);
+		Shape.stringToShape(
+				shapeChooser.getValue())
+		.draw(launchpad, Launchpad.COLOR_OFF, row, colomn, 
+				Direction.BOT_TOP);
 	}
 	
 	@Override
 	public Option<?>[] getOptions() {
-		return new Option<?>[]{alave, color};
+		return new Option<?>[]{shapeChooser, alave, colorChooser};
 	}
 	
 }

@@ -12,9 +12,10 @@ import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.LaunchpadException;
 import com.sinius15.lights.effects.BlockEffect;
 import com.sinius15.lights.effects.ExplodingCross;
+import com.sinius15.lights.effects.LoadFileEffect;
 import com.sinius15.lights.effects.NoneEffect;
 import com.sinius15.lights.effects.ShotEffect;
-import com.sinius15.lights.effects.StarEffect;
+import com.sinius15.lights.effects.ShapeEffect;
 import com.sinius15.lights.effects.WaveEffect;
 import com.sinius15.lights.ui.LightFrame;
 
@@ -32,9 +33,10 @@ public class LaunchpadLightCreator {
 		effects.add(NoneEffect.class);
 		effects.add(WaveEffect.class);
 		effects.add(ShotEffect.class);
-		effects.add(StarEffect.class);
+		effects.add(ShapeEffect.class);
 		effects.add(BlockEffect.class);
 		effects.add(ExplodingCross.class);
+		effects.add(LoadFileEffect.class);
 		
 		String deviceName = (String) JOptionPane.showInputDialog(null, "Chose your launchpad!",
 		        "Launchpad Selector", JOptionPane.QUESTION_MESSAGE, null, MidiCommon.listDevices(true, false), "Launchpad S");
@@ -71,6 +73,15 @@ public class LaunchpadLightCreator {
 			e1.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static Class<? extends Effect> getEffectClass(String className){
+		for(Class<? extends Effect> effClass : effects){
+			if(effClass.getName().equals(className)){
+				return effClass;
+			}
+		}
+		return null;
 	}
 	
 }

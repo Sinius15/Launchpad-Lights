@@ -12,6 +12,8 @@ import com.sinius15.lights.Option;
 
 public class PointOption extends Option<Point>{
 
+	private static final long serialVersionUID = -317307707886644817L;
+	
 	private JPanel panel;
 	private JSpinner colSpinner, rowSpinner;
 	
@@ -44,5 +46,17 @@ public class PointOption extends Option<Point>{
 	@Override
 	public Point getValue() {
 		return new Point((int)rowSpinner.getValue(), (int)colSpinner.getValue());
+	}
+
+	@Override
+	public String getSaveData() {
+		return rowSpinner.getValue() + ":" + colSpinner.getValue();
+	}
+
+	@Override
+	public void initFromSaveData(String saveData) {
+		String[] split = saveData.split(":");
+		rowSpinner.setValue(Integer.valueOf(split[0]));
+		colSpinner.setValue(Integer.valueOf(split[1]));
 	}
 }

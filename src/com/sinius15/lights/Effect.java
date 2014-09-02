@@ -2,7 +2,7 @@ package com.sinius15.lights;
 
 import com.sinius15.launchpad.BufferedLaunchpad;
 
-public abstract class Effect {
+public abstract class Effect{
 	
 	protected int row, colomn;
 	

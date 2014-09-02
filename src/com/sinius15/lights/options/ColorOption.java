@@ -17,6 +17,8 @@ import com.sinius15.lights.Option;
 
 public class ColorOption extends Option<Integer> {
 
+	private static final long serialVersionUID = -6975036123807412850L;
+
 	private JPanel chooser;
 	
 	private ButtonGroup butGroup = new ButtonGroup();
@@ -93,6 +95,16 @@ public class ColorOption extends Option<Integer> {
 		}.setCol(lpColor));
 		chooser.add(b);
 		return b;
+	}
+
+	@Override
+	public String getSaveData() {
+		return Integer.toString(selectedColor);
+	}
+
+	@Override
+	public void initFromSaveData(String saveData) {
+		selectedColor = Integer.valueOf(saveData);
 	}
 	
 }

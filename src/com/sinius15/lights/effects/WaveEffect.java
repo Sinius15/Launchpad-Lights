@@ -4,6 +4,7 @@ import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
+import com.sinius15.lights.Save;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.DirectionOption;
 import com.sinius15.lights.options.SpeedOption;
@@ -11,9 +12,14 @@ import com.sinius15.lights.util.Util;
 
 public class WaveEffect extends Effect{
 	
-	private ColorOption color;
-	private SpeedOption speed;
-	private DirectionOption direction;
+	private static final long serialVersionUID = -8128755031559423171L;
+	
+	@Save
+	public ColorOption color;
+	@Save
+	public SpeedOption speed;
+	@Save
+	public DirectionOption direction;
 	
 	public WaveEffect(int row, int colomn){
 		super(row, colomn);

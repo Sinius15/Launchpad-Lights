@@ -4,13 +4,18 @@ import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
+import com.sinius15.lights.Save;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.SpeedOption;
 
 public class ExplodingCross extends Effect{
 
-	private ColorOption colorSelector;
-	private SpeedOption speedSelector;
+	private static final long serialVersionUID = 201622629973937915L;
+	
+	@Save
+	public ColorOption colorSelector;
+	@Save
+	public SpeedOption speedSelector;
 	
 	public ExplodingCross(int row, int colomn) {
 		super(row, colomn);

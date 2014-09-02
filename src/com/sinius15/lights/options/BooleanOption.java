@@ -7,6 +7,8 @@ import com.sinius15.lights.Option;
 
 public class BooleanOption extends Option<Boolean> {
 
+	private static final long serialVersionUID = -7426995937938904654L;
+	
 	JCheckBox box = new JCheckBox();
 	String title;
 	
@@ -28,6 +30,16 @@ public class BooleanOption extends Option<Boolean> {
 	@Override
 	public Boolean getValue() {
 		return box.isSelected();
+	}
+
+	@Override
+	public String getSaveData() {
+		return Boolean.toString(box.isSelected());
+	}
+
+	@Override
+	public void initFromSaveData(String saveData) {
+		box.setSelected(Boolean.valueOf(saveData));
 	}
 
 }

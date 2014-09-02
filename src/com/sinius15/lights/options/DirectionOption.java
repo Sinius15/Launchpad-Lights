@@ -8,6 +8,8 @@ import com.sinius15.lights.util.Direction;
 
 public class DirectionOption extends Option<Direction> {
 
+	private static final long serialVersionUID = 6611839912062300679L;
+	
 	private JComboBox<String> comp;
 	
 	public DirectionOption(){
@@ -28,6 +30,16 @@ public class DirectionOption extends Option<Direction> {
 	@Override
 	public Direction getValue() {
 		return Direction.fromString((String) comp.getSelectedItem());
+	}
+	
+	@Override
+	public String getSaveData() {
+		return Integer.toString(comp.getSelectedIndex());
+	}
+
+	@Override
+	public void initFromSaveData(String saveData) {
+		comp.setSelectedIndex(Integer.valueOf(saveData));
 	}
 	
 }
