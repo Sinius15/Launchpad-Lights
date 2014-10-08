@@ -9,8 +9,6 @@ import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.SpeedOption;
 
 public class ExplodingCross extends Effect{
-
-	private static final long serialVersionUID = 201622629973937915L;
 	
 	@Save
 	public ColorOption colorSelector;

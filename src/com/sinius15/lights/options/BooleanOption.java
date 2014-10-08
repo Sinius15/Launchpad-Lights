@@ -7,8 +7,6 @@ import com.sinius15.lights.Option;
 
 public class BooleanOption extends Option<Boolean> {
 
-	private static final long serialVersionUID = -7426995937938904654L;
-	
 	JCheckBox box = new JCheckBox();
 	String title;
 	

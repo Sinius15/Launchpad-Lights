@@ -14,8 +14,6 @@ import com.sinius15.lights.options.PointOption;
 
 public class BlockEffect extends Effect {
 	
-	private static final long serialVersionUID = 4043950466106633964L;
-	
 	@Save
 	public PointOption leftTopCorner, rightBottomCorner;
 	@Save

@@ -1,5 +1,6 @@
 package com.sinius15.lights;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
@@ -52,15 +53,13 @@ public class LaunchpadLightCreator {
 			LightFrame frame = new LightFrame(rack);
 			frame.setVisible(true);
 			
-			
-			
 			pad.addButtonListener(rack);
 			
 		} catch (LaunchpadException | MidiUnavailableException e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
-
+		FileLoader.LoadFile(new File("testing.yml"));
 	}
 	
 	public static Effect createIntance(Class< ? extends Effect> effClass, int row, int col){

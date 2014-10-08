@@ -4,6 +4,7 @@ import com.sinius15.launchpad.Launchpad;
 import com.sinius15.lights.shapes.ArrowShape;
 import com.sinius15.lights.shapes.CrossShape;
 import com.sinius15.lights.shapes.DotShape;
+import com.sinius15.lights.shapes.LinesShape;
 import com.sinius15.lights.util.Direction;
 
 public abstract class Shape {
@@ -15,7 +16,7 @@ public abstract class Shape {
 	public static String[] shapeStrings;
 	
 	public static void init(){
-		shapes = new Shape[]{new DotShape(), new CrossShape(), new ArrowShape()};
+		shapes = new Shape[]{new DotShape(), new CrossShape(), new ArrowShape(), new LinesShape()};
 		shapeStrings = new String[shapes.length];
 		for(int i = 0; i < shapes.length; i++){
 			shapeStrings[i] = shapes[i].getName();

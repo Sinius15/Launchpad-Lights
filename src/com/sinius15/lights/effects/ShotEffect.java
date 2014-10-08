@@ -13,8 +13,6 @@ import com.sinius15.lights.options.SpeedOption;
 
 public class ShotEffect extends Effect {
 	
-	private static final long serialVersionUID = 7283296373490151239L;
-	
 	@Save
 	public ColorOption colorChooser;
 	@Save

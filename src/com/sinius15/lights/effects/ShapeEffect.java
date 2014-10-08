@@ -13,8 +13,6 @@ import com.sinius15.lights.util.Direction;
 
 public class ShapeEffect extends Effect {
 	
-	private static final long serialVersionUID = -8830383794824144746L;
-	
 	@Save
 	public ColorOption colorChooser;
 	@Save

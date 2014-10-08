@@ -12,8 +12,6 @@ import com.sinius15.lights.Option;
 
 public class PointOption extends Option<Point>{
 
-	private static final long serialVersionUID = -317307707886644817L;
-	
 	private JPanel panel;
 	private JSpinner colSpinner, rowSpinner;
 	

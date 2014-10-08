@@ -12,8 +12,6 @@ import com.sinius15.lights.util.Util;
 
 public class WaveEffect extends Effect{
 	
-	private static final long serialVersionUID = -8128755031559423171L;
-	
 	@Save
 	public ColorOption color;
 	@Save

@@ -8,8 +8,6 @@ import com.sinius15.lights.Option;
 
 public class SpeedOption extends Option<Integer>{
 
-	private static final long serialVersionUID = -1662298794901268661L;
-	
 	private JSpinner spinner;
 	
 	public SpeedOption(int defaultValue){

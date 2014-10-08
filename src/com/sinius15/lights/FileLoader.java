@@ -30,18 +30,24 @@ public class FileLoader {
 					Annotation ann = field.getAnnotation(Save.class);
 					if(ann == null)
 						continue;
-					Option<?> option;
+					
 					try{
-						option = (Option<?>) field.get(eff);
+						Object o = field.get(eff);
+						if(o instanceof Saveable){
+							Saveable toLoadIn = (Saveable) o;
+							String optionSaveData = data.getString("button."+row+"."+col+"."+field.getName());
+							if(optionSaveData == null)
+								continue;
+							toLoadIn.initFromSaveData(optionSaveData);
+						}else{
+							throw new IllegalArgumentException("The variable " + field.getName() + " Is not Saveable");
+						}
 					}catch(Exception e){
 						e.printStackTrace();
 						System.out.println("Did not finish loading because of error.");
 						return;
 					}
-					String optionSaveData = data.getString("button."+row+"."+col+"."+field.getName());
-					if(optionSaveData == null)
-						continue;
-					option.initFromSaveData(optionSaveData);
+					
 				}
 				
 				LaunchpadLightCreator.rack.buttons[row][col].colorStandardColor();
@@ -64,15 +70,21 @@ public class FileLoader {
 					Annotation ann = field.getAnnotation(Save.class);
 					if(ann == null)
 						continue;
-					Option<?> option;
 					try{
-						option = (Option<?>) field.get(eff);
+						Object o = field.get(eff);
+						if(o instanceof Saveable){
+							Saveable toSave = (Saveable) o;
+							data.addString("button."+row+"."+col+"."+field.getName(), toSave.getSaveData());
+						}else{
+							throw new IllegalArgumentException("The variable " + field.getName() + " is not Saveable.");
+						}
 					}catch(Exception e){
 						e.printStackTrace();
 						System.out.println("Did not finish saving because of error.");
 						return;
 					}
-					data.addString("button."+row+"."+col+"."+field.getName(), option.getSaveData());
+					
+					
 				}
 			}
 		}

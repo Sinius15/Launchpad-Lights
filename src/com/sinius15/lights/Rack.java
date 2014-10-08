@@ -88,7 +88,8 @@ public class Rack extends JPanel implements ButtonListener{
 
 	@Override
 	public void onButtonDown(final int row, final int colomn) {
-		buttons[row][colomn].onButtonDown();
+		if(buttons[row][colomn] != null)
+			buttons[row][colomn].onButtonDown();
 		if(effects[row][colomn] != null)
 			new Thread(new Runnable() {
 				@Override
@@ -101,7 +102,8 @@ public class Rack extends JPanel implements ButtonListener{
 
 	@Override
 	public void onButtonUp(final int row, final int colomn) {
-		buttons[row][colomn].onButtonUp();
+		if(buttons[row][colomn] != null)
+			buttons[row][colomn].onButtonUp();
 		if(effects[row][colomn] != null)
 			new Thread(new Runnable() {
 				@Override

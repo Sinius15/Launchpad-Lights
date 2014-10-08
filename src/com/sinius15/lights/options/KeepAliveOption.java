@@ -14,8 +14,6 @@ import com.sinius15.lights.Option;
 
 public class KeepAliveOption extends Option<Integer> implements ChangeListener{
 
-	private static final long serialVersionUID = 3482203761842048492L;
-	
 	private JPanel panel;
 	private JCheckBox checkBox;
 	private JSpinner spinner;

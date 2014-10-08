@@ -8,8 +8,6 @@ import com.sinius15.lights.util.Direction;
 
 public class DirectionOption extends Option<Direction> {
 
-	private static final long serialVersionUID = 6611839912062300679L;
-	
 	private JComboBox<String> comp;
 	
 	public DirectionOption(){
