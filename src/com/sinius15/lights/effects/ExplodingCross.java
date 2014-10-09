@@ -6,19 +6,19 @@ import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.options.ColorOption;
-import com.sinius15.lights.options.SpeedOption;
+import com.sinius15.lights.options.IntOption;
 
 public class ExplodingCross extends Effect{
 	
 	@Save
 	public ColorOption colorSelector;
 	@Save
-	public SpeedOption speedSelector;
+	public IntOption speedSelector;
 	
 	public ExplodingCross(int row, int colomn) {
 		super(row, colomn);
 		colorSelector = new ColorOption();
-		speedSelector = new SpeedOption(300);
+		speedSelector = new IntOption(300);
 	}
 	
 	@Override

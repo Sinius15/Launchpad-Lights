@@ -15,6 +15,7 @@ import com.sinius15.lights.effects.BlockEffect;
 import com.sinius15.lights.effects.ExplodingCross;
 import com.sinius15.lights.effects.LoadFileEffect;
 import com.sinius15.lights.effects.NoneEffect;
+import com.sinius15.lights.effects.RandomBlinkEffect;
 import com.sinius15.lights.effects.ShotEffect;
 import com.sinius15.lights.effects.ShapeEffect;
 import com.sinius15.lights.effects.WaveEffect;
@@ -38,6 +39,7 @@ public class LaunchpadLightCreator {
 		effects.add(BlockEffect.class);
 		effects.add(ExplodingCross.class);
 		effects.add(LoadFileEffect.class);
+		effects.add(RandomBlinkEffect.class);
 		
 		String deviceName = (String) JOptionPane.showInputDialog(null, "Chose your launchpad!",
 		        "Launchpad Selector", JOptionPane.QUESTION_MESSAGE, null, MidiCommon.listDevices(true, false), "Launchpad S");

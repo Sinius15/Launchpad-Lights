@@ -7,7 +7,7 @@ import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.DirectionOption;
-import com.sinius15.lights.options.SpeedOption;
+import com.sinius15.lights.options.IntOption;
 import com.sinius15.lights.util.Util;
 
 public class WaveEffect extends Effect{
@@ -15,14 +15,14 @@ public class WaveEffect extends Effect{
 	@Save
 	public ColorOption color;
 	@Save
-	public SpeedOption speed;
+	public IntOption speed;
 	@Save
 	public DirectionOption direction;
 	
 	public WaveEffect(int row, int colomn){
 		super(row, colomn);
 		color = new ColorOption();
-		speed = new SpeedOption(30);
+		speed = new IntOption(30);
 		direction = new DirectionOption();
 	}
 	

@@ -9,7 +9,7 @@ import com.sinius15.lights.Shape;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.ComboBoxOption;
 import com.sinius15.lights.options.DirectionOption;
-import com.sinius15.lights.options.SpeedOption;
+import com.sinius15.lights.options.IntOption;
 
 public class ShotEffect extends Effect {
 	
@@ -18,7 +18,7 @@ public class ShotEffect extends Effect {
 	@Save
 	public DirectionOption dirChooser;
 	@Save
-	public SpeedOption speedChooser;
+	public IntOption speedChooser;
 	@Save
 	public ComboBoxOption shapeChooser;
 	
@@ -26,7 +26,7 @@ public class ShotEffect extends Effect {
 		super(row, colomn);
 		colorChooser = new ColorOption();
 		dirChooser = new DirectionOption();
-		speedChooser = new SpeedOption(50);
+		speedChooser = new IntOption(50);
 		
 		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
 	}

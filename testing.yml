@@ -1,4 +1,9 @@
 button:  
+    0:  
+        0: "com.sinius15.lights.effects.RandomBlinkEffect"
+            colorSelector: "-123456"
+            persentage: "30"
+            speed: "5"
     3:  
         2: "com.sinius15.lights.effects.ShapeEffect"
             alave: "-1"
