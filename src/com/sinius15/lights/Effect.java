@@ -1,14 +1,18 @@
 package com.sinius15.lights;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
+import java.util.UUID;
+
+import com.sinius15.launchpad.OwnedLaunchpad;
 
 public abstract class Effect{
 	
 	protected int row, colomn;
+	protected final String UID;
 	
 	public Effect(int row, int colomn){
 		this.row = row;
 		this.colomn = colomn;
+		this.UID = UUID.randomUUID().toString();
 	}
 	
 	/**
@@ -30,7 +34,7 @@ public abstract class Effect{
 	 * So you can occupy this thread without any problems.
 	 * @param launchpad the launchpad to show the action on.
 	 */
-	public void buttonDown(BufferedLaunchpad launchpad){};
+	public void buttonDown(OwnedLaunchpad launchpad){};
 	
 	/**
 	 * called when the button on the launchpad is pressed.
@@ -38,7 +42,7 @@ public abstract class Effect{
 	 * So you can occupy this thread without any problems.
 	 * @param launchpad the launchpad to show the action on.
 	 */
-	public void buttonUp(BufferedLaunchpad launchpad){};
+	public void buttonUp(OwnedLaunchpad launchpad){};
 	
 	public Option<?>[] getOptions(){
 		return null;

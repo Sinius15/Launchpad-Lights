@@ -2,7 +2,7 @@ package com.sinius15.lights.effects;
 
 import java.io.File;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.FileLoader;
 import com.sinius15.lights.Option;
@@ -10,7 +10,7 @@ import com.sinius15.lights.Save;
 import com.sinius15.lights.options.FileOption;
 
 public class LoadFileEffect extends Effect {
-
+	
 	@Save
 	public FileOption fileChooser;
 	
@@ -18,7 +18,7 @@ public class LoadFileEffect extends Effect {
 		super(row, colomn);
 		fileChooser = new FileOption();
 	}
-
+	
 	@Override
 	public String getName() {
 		return "Load File";
@@ -30,12 +30,12 @@ public class LoadFileEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(BufferedLaunchpad launchpad) {
+	public void buttonDown(OwnedLaunchpad launchpad) {
 		FileLoader.LoadFile(new File(fileChooser.getValue()));
 	}
 	
 	@Override
 	public Option<?>[] getOptions() {
-		return new Option<?>[]{fileChooser};
+		return new Option<?>[] { fileChooser };
 	}
 }

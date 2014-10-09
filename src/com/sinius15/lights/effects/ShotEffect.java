@@ -1,7 +1,7 @@
 package com.sinius15.lights.effects;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
@@ -30,9 +30,9 @@ public class ShotEffect extends Effect {
 		
 		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
 	}
-
+	
 	@Override
-	public void buttonDown(BufferedLaunchpad launchpad) {
+	public void buttonDown(OwnedLaunchpad launchpad) {
 		int color = colorChooser.getValue();
 		int curRow = row;
 		int curCol = colomn;
@@ -57,16 +57,14 @@ public class ShotEffect extends Effect {
 				case TOP_BOT:
 					curRow++;
 					break;
-				
+			
 			}
 		} while (curCol >= 0 && curRow >= 0 && curCol <= 8 && curRow <= 8);
 	}
 	
-	private void setLedsOn(Launchpad pad, int colomn, int row, int color) {
-		Shape.stringToShape(
-				shapeChooser.getValue())
-		.draw(pad, color, row, colomn, 
-				dirChooser.getValue());
+	private void setLedsOn(OwnedLaunchpad pad, int colomn, int row, int color) {
+		Shape.stringToShape(shapeChooser.getValue()).draw(pad, color, row, colomn,
+				dirChooser.getValue(), UID);
 	}
 	
 	@Override
@@ -81,7 +79,7 @@ public class ShotEffect extends Effect {
 	
 	@Override
 	public Option<?>[] getOptions() {
-		return new Option<?>[]{dirChooser, shapeChooser, speedChooser, colorChooser};
+		return new Option<?>[] { dirChooser, shapeChooser, speedChooser, colorChooser };
 	}
 	
 }

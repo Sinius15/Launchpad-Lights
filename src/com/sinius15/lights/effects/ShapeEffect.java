@@ -1,7 +1,7 @@
 package com.sinius15.lights.effects;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
@@ -22,7 +22,7 @@ public class ShapeEffect extends Effect {
 	
 	private boolean isPressed = false, shouldReleaseOnButtonUp = false;
 	
-	public ShapeEffect(int row, int colomn){
+	public ShapeEffect(int row, int colomn) {
 		super(row, colomn);
 		colorChooser = new ColorOption();
 		alave = new KeepAliveOption();
@@ -40,52 +40,48 @@ public class ShapeEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(BufferedLaunchpad launchpad) {
+	public void buttonDown(OwnedLaunchpad launchpad) {
 		isPressed = true;
 		showPattern(launchpad);
 		if (alave.getValue() >= 0) {
 			shouldReleaseOnButtonUp = false;
-				
+			
 			try {
 				Thread.sleep(alave.getValue());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if(isPressed)
+			if (isPressed)
 				shouldReleaseOnButtonUp = true;
 			else
 				removePattern(launchpad);
-		}else{
+		} else {
 			shouldReleaseOnButtonUp = true;
 		}
 	}
 	
 	@Override
-	public void buttonUp(BufferedLaunchpad launchpad) {
+	public void buttonUp(OwnedLaunchpad launchpad) {
 		isPressed = false;
-		if(shouldReleaseOnButtonUp){
+		if (shouldReleaseOnButtonUp) {
 			removePattern(launchpad);
 			shouldReleaseOnButtonUp = false;
 		}
 	}
 	
-	private void showPattern(Launchpad launchpad){
-		Shape.stringToShape(
-				shapeChooser.getValue())
-		.draw(launchpad, colorChooser.getValue(), row, colomn, 
-				Direction.BOT_TOP);
+	private void showPattern(OwnedLaunchpad launchpad) {
+		Shape.stringToShape(shapeChooser.getValue()).draw(launchpad, colorChooser.getValue(), row,
+				colomn, Direction.BOT_TOP, UID);
 	}
 	
-	private void removePattern(Launchpad launchpad){
-		Shape.stringToShape(
-				shapeChooser.getValue())
-		.draw(launchpad, Launchpad.COLOR_OFF, row, colomn, 
-				Direction.BOT_TOP);
+	private void removePattern(OwnedLaunchpad launchpad) {
+		Shape.stringToShape(shapeChooser.getValue()).draw(launchpad, Launchpad.COLOR_OFF, row,
+				colomn, Direction.BOT_TOP, UID);
 	}
 	
 	@Override
 	public Option<?>[] getOptions() {
-		return new Option<?>[]{shapeChooser, alave, colorChooser};
+		return new Option<?>[] { shapeChooser, alave, colorChooser };
 	}
 	
 }

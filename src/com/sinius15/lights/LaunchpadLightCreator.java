@@ -9,21 +9,21 @@ import javax.swing.JOptionPane;
 
 import org.jsresources.MidiCommon;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.LaunchpadException;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.effects.BlockEffect;
 import com.sinius15.lights.effects.ExplodingCross;
 import com.sinius15.lights.effects.LoadFileEffect;
 import com.sinius15.lights.effects.NoneEffect;
 import com.sinius15.lights.effects.RandomBlinkEffect;
-import com.sinius15.lights.effects.ShotEffect;
 import com.sinius15.lights.effects.ShapeEffect;
+import com.sinius15.lights.effects.ShotEffect;
 import com.sinius15.lights.effects.WaveEffect;
 import com.sinius15.lights.ui.LightFrame;
 
 public class LaunchpadLightCreator {
 	
-	public static BufferedLaunchpad pad;
+	public static OwnedLaunchpad pad;
 	public static ArrayList<Class< ? extends Effect>> effects = new ArrayList<>();
 	
 	public static Rack rack;
@@ -46,7 +46,7 @@ public class LaunchpadLightCreator {
 		
 		
 		try {
-			pad = new BufferedLaunchpad(deviceName);
+			pad = new OwnedLaunchpad(deviceName);
 			pad.open();
 			
 			rack = new Rack();

@@ -1,7 +1,6 @@
 package com.sinius15.lights.effects;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
-import com.sinius15.launchpad.Launchpad;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
@@ -22,7 +21,7 @@ public class ExplodingCross extends Effect{
 	}
 	
 	@Override
-	public void buttonDown(BufferedLaunchpad launchpad) {
+	public void buttonDown(OwnedLaunchpad launchpad) {
 		for(int i = 0; i < 5; i++){
 			setLightIfExist(launchpad, 4-i, 3, true);
 			setLightIfExist(launchpad, 4-i, 4, true);
@@ -57,13 +56,13 @@ public class ExplodingCross extends Effect{
 		
 	}
 	
-	private void setLightIfExist(Launchpad pad, int row, int col, boolean on){
+	private void setLightIfExist(OwnedLaunchpad pad, int row, int col, boolean on){
 		if(row < 0 || row > 8 || col < 0 || col > 8)
 			return;
 		if(on)
-			pad.setLedOn(col, row, colorSelector.getValue());
+			pad.setLedOn(col, row, colorSelector.getValue(), UID);
 		else
-			pad.setLedOff(col, row);
+			pad.setLedOff(col, row, UID);
 	}
 	
 	@Override

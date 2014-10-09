@@ -1,9 +1,10 @@
 package com.sinius15.lights.shapes;
 
-import com.sinius15.launchpad.Launchpad;
+import static com.sinius15.lights.util.Util.setLedIfPossible;
+
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Shape;
 import com.sinius15.lights.util.Direction;
-import static com.sinius15.lights.util.Util.*;
 
 public class CrossShape extends Shape{
 	
@@ -13,12 +14,12 @@ public class CrossShape extends Shape{
 	}
 
 	@Override
-	public void draw(Launchpad pad, int color, int row, int colomn, Direction dir) {
-		setLedIfPossible(pad, row, colomn, color);
-		setLedIfPossible(pad, row+1, colomn, color);
-		setLedIfPossible(pad, row-1, colomn, color);
-		setLedIfPossible(pad, row, colomn+1, color);
-		setLedIfPossible(pad, row, colomn-1, color);
+	public void draw(OwnedLaunchpad pad, int color, int row, int colomn, Direction dir, String owner) {
+		setLedIfPossible(pad, row, colomn, color, owner);
+		setLedIfPossible(pad, row+1, colomn, color, owner);
+		setLedIfPossible(pad, row-1, colomn, color, owner);
+		setLedIfPossible(pad, row, colomn+1, color, owner);
+		setLedIfPossible(pad, row, colomn-1, color, owner);
 	}
 	
 }

@@ -1,7 +1,7 @@
 package com.sinius15.lights.effects;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
 import com.sinius15.launchpad.Launchpad;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
@@ -37,34 +37,34 @@ public class WaveEffect extends Effect{
 	}
 
 	@Override
-	public void buttonDown(BufferedLaunchpad launchpad) {
+	public void buttonDown(OwnedLaunchpad launchpad) {
 		switch (direction.getValue()) {
 			case BOT_TOP:
 				for(int row = 8; row >= 0; row--){
-					Util.colorRow(launchpad, color.getValue(), row);
+					Util.colorRow(launchpad, color.getValue(), row, UID);
 					pause();
-					Util.colorRow(launchpad, Launchpad.COLOR_OFF, row);
+					Util.colorRow(launchpad, Launchpad.COLOR_OFF, row, UID);
 				}
 				break;
 			case TOP_BOT:
 				for(int row = 0; row <= 8; row++){
-					Util.colorRow(launchpad, color.getValue(), row);
+					Util.colorRow(launchpad, color.getValue(), row, UID);
 					pause();
-					Util.colorRow(launchpad, Launchpad.COLOR_OFF, row);
+					Util.colorRow(launchpad, Launchpad.COLOR_OFF, row, UID);
 				}
 				break;
 			case LEF_RIG:
 				for(int col = 0; col <= 8; col++){
-					Util.colorColomn(launchpad, color.getValue(), col);
+					Util.colorColomn(launchpad, color.getValue(), col, UID);
 					pause();
-					Util.colorColomn(launchpad, Launchpad.COLOR_OFF, col);
+					Util.colorColomn(launchpad, Launchpad.COLOR_OFF, col, UID);
 				}
 				break;
 			case RIG_LEF:
 				for(int col = 8; col >= 0; col--){
-					Util.colorColomn(launchpad, color.getValue(), col);
+					Util.colorColomn(launchpad, color.getValue(), col, UID);
 					pause();
-					Util.colorColomn(launchpad, Launchpad.COLOR_OFF, col);
+					Util.colorColomn(launchpad, Launchpad.COLOR_OFF, col, UID);
 				}
 				break;
 			default:

@@ -2,8 +2,7 @@ package com.sinius15.lights.effects;
 
 import java.awt.Point;
 
-import com.sinius15.launchpad.BufferedLaunchpad;
-import com.sinius15.launchpad.Launchpad;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
 import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
@@ -33,7 +32,7 @@ public class BlockEffect extends Effect {
 		aliveOption = new KeepAliveOption();
 		showOutline = new BooleanOption("Show only outline?", false);
 	}
-
+	
 	@Override
 	public String getName() {
 		return "Block";
@@ -45,80 +44,81 @@ public class BlockEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(BufferedLaunchpad launchpad) {
+	public void buttonDown(OwnedLaunchpad launchpad) {
 		isButtonDown = true;
 		showLights(launchpad);
-		if(aliveOption.getValue() != -1){
+		if (aliveOption.getValue() != -1) {
 			removeLampsOnButtonUp = false;
 			try {
 				Thread.sleep(aliveOption.getValue());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if(isButtonDown)
+			if (isButtonDown)
 				removeLampsOnButtonUp = true;
 			else
 				removeLight(launchpad);
-		}else{
+		} else {
 			removeLampsOnButtonUp = true;
 		}
 		
 	}
 	
 	@Override
-	public void buttonUp(BufferedLaunchpad launchpad) {
+	public void buttonUp(OwnedLaunchpad launchpad) {
 		isButtonDown = false;
-		if(removeLampsOnButtonUp){
+		if (removeLampsOnButtonUp) {
 			removeLight(launchpad);
 		}
 		
 	}
 	
-	private void showLights(Launchpad pad){
+	private void showLights(OwnedLaunchpad pad) {
 		Point p1 = leftTopCorner.getValue();
 		Point p2 = rightBottomCorner.getValue();
-		if(showOutline.getValue()){
-			for(int row = p1.x; row <= p2.x; row++){
-				pad.setLedOn(p1.y, row, colorSelector.getValue());
-				pad.setLedOn(p2.y, row, colorSelector.getValue());
+		if (showOutline.getValue()) {
+			for (int row = p1.x; row <= p2.x; row++) {
+				pad.setLedOn(p1.y, row, colorSelector.getValue(), UID);
+				pad.setLedOn(p2.y, row, colorSelector.getValue(), UID);
 			}
-			for(int col = p1.y; col <= p2.y; col++){
-				pad.setLedOn(col, p1.x, colorSelector.getValue());
-				pad.setLedOn(col, p2.x, colorSelector.getValue());
+			for (int col = p1.y; col <= p2.y; col++) {
+				pad.setLedOn(col, p1.x, colorSelector.getValue(), UID);
+				pad.setLedOn(col, p2.x, colorSelector.getValue(), UID);
 			}
-		}else{
-			for(int row = p1.x; row <= p2.x; row++){
-				for(int col = p1.y; col <= p2.y; col++){
-					pad.setLedOn(col, row, colorSelector.getValue());
+		} else {
+			for (int row = p1.x; row <= p2.x; row++) {
+				for (int col = p1.y; col <= p2.y; col++) {
+					pad.setLedOn(col, row, colorSelector.getValue(), UID);
 				}
-			}	
+			}
 		}
 	}
 	
-	private void removeLight(Launchpad pad){
+	private void removeLight(OwnedLaunchpad pad) {
 		Point p1 = leftTopCorner.getValue();
 		Point p2 = rightBottomCorner.getValue();
 		
-		if(showOutline.getValue()){
-			for(int row = p1.x; row <= p2.x; row++){
-				pad.setLedOff(p1.y, row);
-				pad.setLedOff(p2.y, row);
+		if (showOutline.getValue()) {
+			for (int row = p1.x; row <= p2.x; row++) {
+				pad.setLedOff(p1.y, row, UID);
+				pad.setLedOff(p2.y, row, UID);
 			}
-			for(int col = p1.y; col <= p2.y; col++){
-				pad.setLedOff(col, p1.x);
-				pad.setLedOff(col, p2.x);
+			for (int col = p1.y; col <= p2.y; col++) {
+				pad.setLedOff(col, p1.x, UID);
+				pad.setLedOff(col, p2.x, UID);
 			}
-		}else{
-			for(int row = p1.x; row <= p2.x; row++){
-				for(int col = p1.y; col <= p2.y; col++){
-					pad.setLedOff(col, row);
+		} else {
+			for (int row = p1.x; row <= p2.x; row++) {
+				for (int col = p1.y; col <= p2.y; col++) {
+					pad.setLedOff(col, row, UID);
 				}
-			}	
+			}
 		}
 	}
 	
 	@Override
 	public Option<?>[] getOptions() {
-		return new Option<?>[]{leftTopCorner, rightBottomCorner,showOutline, aliveOption, colorSelector};
+		return new Option<?>[] { leftTopCorner, rightBottomCorner, showOutline, aliveOption,
+				colorSelector };
 	}
 }

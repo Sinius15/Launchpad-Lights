@@ -1,6 +1,6 @@
 package com.sinius15.lights;
 
-import com.sinius15.launchpad.Launchpad;
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.shapes.ArrowShape;
 import com.sinius15.lights.shapes.CrossShape;
 import com.sinius15.lights.shapes.DotShape;
@@ -10,7 +10,7 @@ import com.sinius15.lights.util.Direction;
 public abstract class Shape {
 	
 	public abstract String getName();
-	public abstract void draw(Launchpad pad, int color, int row, int colomn, Direction dir);
+	public abstract void draw(OwnedLaunchpad pad, int color, int row, int colomn, Direction dir, String owner);
 
 	public static Shape[] shapes;
 	public static String[] shapeStrings;
