@@ -54,16 +54,16 @@ public class WaveEffect extends Effect{
 				break;
 			case LEF_RIG:
 				for(int col = 0; col <= 8; col++){
-					colorColomn(color.getValue(), col);
+					colorColumn(color.getValue(), col);
 					pause();
-					colorColomn(Launchpad.COLOR_OFF, col);
+					colorColumn(Launchpad.COLOR_OFF, col);
 				}
 				break;
 			case RIG_LEF:
 				for(int col = 8; col >= 0; col--){
-					colorColomn(color.getValue(), col);
+					colorColumn(color.getValue(), col);
 					pause();
-					colorColomn(Launchpad.COLOR_OFF, col);
+					colorColumn(Launchpad.COLOR_OFF, col);
 				}
 				break;
 			default:

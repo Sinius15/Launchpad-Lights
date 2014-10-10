@@ -71,12 +71,12 @@ public class ShapeEffect extends Effect {
 	
 	private void showPattern() {
 		Shape.stringToShape(shapeChooser.getValue()).draw(this, colorChooser.getValue(), row,
-				colomn, Direction.BOT_TOP);
+				column, Direction.BOT_TOP);
 	}
 	
 	private void removePattern() {
 		Shape.stringToShape(shapeChooser.getValue()).draw(this, Launchpad.COLOR_OFF, row,
-				colomn, Direction.BOT_TOP);
+				column, Direction.BOT_TOP);
 	}
 	
 	@Override

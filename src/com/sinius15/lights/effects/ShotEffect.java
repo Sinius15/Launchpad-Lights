@@ -35,7 +35,7 @@ public class ShotEffect extends Effect {
 	public void buttonDown() {
 		int color = colorChooser.getValue();
 		int curRow = row;
-		int curCol = colomn;
+		int curCol = column;
 		do {
 			setLedsOn(curCol, curRow, color);
 			try {

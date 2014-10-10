@@ -26,6 +26,15 @@ button:
             alave: "-1"
             colorChooser: "60"
             shapeChooser: "3"
+    7:  
+        3: "com.sinius15.lights.effects.WaveEffect"
+            color: "15"
+            direction: "1"
+            speed: "30"
+        4: "com.sinius15.lights.effects.WaveEffect"
+            color: "60"
+            direction: "2"
+            speed: "30"
     8:  
         0: "com.sinius15.lights.effects.ShotEffect"
             colorChooser: "63"
