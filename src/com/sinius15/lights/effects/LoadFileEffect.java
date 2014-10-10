@@ -14,8 +14,8 @@ public class LoadFileEffect extends Effect {
 	@Save
 	public FileOption fileChooser;
 	
-	public LoadFileEffect(int row, int colomn) {
-		super(row, colomn);
+	public LoadFileEffect(OwnedLaunchpad pad, int row, int colomn) {
+		super(pad, row, colomn);
 		fileChooser = new FileOption();
 	}
 	
@@ -30,7 +30,7 @@ public class LoadFileEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(OwnedLaunchpad launchpad) {
+	public void buttonDown() {
 		FileLoader.LoadFile(new File(fileChooser.getValue()));
 	}
 	

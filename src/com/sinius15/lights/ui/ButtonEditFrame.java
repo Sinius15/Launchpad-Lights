@@ -65,7 +65,7 @@ public class ButtonEditFrame extends JFrameLayered {
 				effects[i] = curEffect;
 				selectedListItem = i;
 			}else{
-				effects[i] = LaunchpadLightCreator.createIntance(effectClass, row, col);
+				effects[i] = LaunchpadLightCreator.createIntance(effectClass, LaunchpadLightCreator.pad, row, col);
 			}
 		}
 		list = new JList<Effect>();

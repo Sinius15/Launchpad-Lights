@@ -23,7 +23,7 @@ public class FileLoader {
 					System.err.println("could not find class " + effClassName);
 					continue;
 				}
-				Effect eff = LaunchpadLightCreator.createIntance(effClass, row, col);
+				Effect eff = LaunchpadLightCreator.createIntance(effClass, LaunchpadLightCreator.pad, row, col);
 				LaunchpadLightCreator.rack.effects[row][col] = eff;
 				
 				for(Field field : effClass.getDeclaredFields()){

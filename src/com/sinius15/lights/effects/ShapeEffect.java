@@ -22,8 +22,8 @@ public class ShapeEffect extends Effect {
 	
 	private boolean isPressed = false, shouldReleaseOnButtonUp = false;
 	
-	public ShapeEffect(int row, int colomn) {
-		super(row, colomn);
+	public ShapeEffect(OwnedLaunchpad pad, int row, int colomn) {
+		super(pad, row, colomn);
 		colorChooser = new ColorOption();
 		alave = new KeepAliveOption();
 		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
@@ -40,9 +40,9 @@ public class ShapeEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(OwnedLaunchpad launchpad) {
+	public void buttonDown() {
 		isPressed = true;
-		showPattern(launchpad);
+		showPattern();
 		if (alave.getValue() >= 0) {
 			shouldReleaseOnButtonUp = false;
 			
@@ -54,29 +54,29 @@ public class ShapeEffect extends Effect {
 			if (isPressed)
 				shouldReleaseOnButtonUp = true;
 			else
-				removePattern(launchpad);
+				removePattern();
 		} else {
 			shouldReleaseOnButtonUp = true;
 		}
 	}
 	
 	@Override
-	public void buttonUp(OwnedLaunchpad launchpad) {
+	public void buttonUp() {
 		isPressed = false;
 		if (shouldReleaseOnButtonUp) {
-			removePattern(launchpad);
+			removePattern();
 			shouldReleaseOnButtonUp = false;
 		}
 	}
 	
-	private void showPattern(OwnedLaunchpad launchpad) {
-		Shape.stringToShape(shapeChooser.getValue()).draw(launchpad, colorChooser.getValue(), row,
-				colomn, Direction.BOT_TOP, UID);
+	private void showPattern() {
+		Shape.stringToShape(shapeChooser.getValue()).draw(this, colorChooser.getValue(), row,
+				colomn, Direction.BOT_TOP);
 	}
 	
-	private void removePattern(OwnedLaunchpad launchpad) {
-		Shape.stringToShape(shapeChooser.getValue()).draw(launchpad, Launchpad.COLOR_OFF, row,
-				colomn, Direction.BOT_TOP, UID);
+	private void removePattern() {
+		Shape.stringToShape(shapeChooser.getValue()).draw(this, Launchpad.COLOR_OFF, row,
+				colomn, Direction.BOT_TOP);
 	}
 	
 	@Override

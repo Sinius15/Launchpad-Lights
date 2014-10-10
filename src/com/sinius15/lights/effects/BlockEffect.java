@@ -24,8 +24,8 @@ public class BlockEffect extends Effect {
 	
 	private boolean isButtonDown = false, removeLampsOnButtonUp = false;
 	
-	public BlockEffect(int row, int colomn) {
-		super(row, colomn);
+	public BlockEffect(OwnedLaunchpad pad, int row, int colomn) {
+		super(pad, row, colomn);
 		leftTopCorner = new PointOption("Left top corner of the block:");
 		rightBottomCorner = new PointOption("Right bottom corner of the block:");
 		colorSelector = new ColorOption();
@@ -44,9 +44,9 @@ public class BlockEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(OwnedLaunchpad launchpad) {
+	public void buttonDown() {
 		isButtonDown = true;
-		showLights(launchpad);
+		showLights();
 		if (aliveOption.getValue() != -1) {
 			removeLampsOnButtonUp = false;
 			try {
@@ -57,7 +57,7 @@ public class BlockEffect extends Effect {
 			if (isButtonDown)
 				removeLampsOnButtonUp = true;
 			else
-				removeLight(launchpad);
+				removeLight();
 		} else {
 			removeLampsOnButtonUp = true;
 		}
@@ -65,52 +65,52 @@ public class BlockEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonUp(OwnedLaunchpad launchpad) {
+	public void buttonUp() {
 		isButtonDown = false;
 		if (removeLampsOnButtonUp) {
-			removeLight(launchpad);
+			removeLight();
 		}
 		
 	}
 	
-	private void showLights(OwnedLaunchpad pad) {
+	private void showLights() {
 		Point p1 = leftTopCorner.getValue();
 		Point p2 = rightBottomCorner.getValue();
 		if (showOutline.getValue()) {
 			for (int row = p1.x; row <= p2.x; row++) {
-				pad.setLedOn(p1.y, row, colorSelector.getValue(), UID);
-				pad.setLedOn(p2.y, row, colorSelector.getValue(), UID);
+				setLedOn(p1.y, row, colorSelector.getValue());
+				setLedOn(p2.y, row, colorSelector.getValue());
 			}
 			for (int col = p1.y; col <= p2.y; col++) {
-				pad.setLedOn(col, p1.x, colorSelector.getValue(), UID);
-				pad.setLedOn(col, p2.x, colorSelector.getValue(), UID);
+				setLedOn(col, p1.x, colorSelector.getValue());
+				setLedOn(col, p2.x, colorSelector.getValue());
 			}
 		} else {
 			for (int row = p1.x; row <= p2.x; row++) {
 				for (int col = p1.y; col <= p2.y; col++) {
-					pad.setLedOn(col, row, colorSelector.getValue(), UID);
+					setLedOn(col, row, colorSelector.getValue());
 				}
 			}
 		}
 	}
 	
-	private void removeLight(OwnedLaunchpad pad) {
+	private void removeLight() {
 		Point p1 = leftTopCorner.getValue();
 		Point p2 = rightBottomCorner.getValue();
 		
 		if (showOutline.getValue()) {
 			for (int row = p1.x; row <= p2.x; row++) {
-				pad.setLedOff(p1.y, row, UID);
-				pad.setLedOff(p2.y, row, UID);
+				setLedOff(p1.y, row);
+				setLedOff(p2.y, row);
 			}
 			for (int col = p1.y; col <= p2.y; col++) {
-				pad.setLedOff(col, p1.x, UID);
-				pad.setLedOff(col, p2.x, UID);
+				setLedOff(col, p1.x);
+				setLedOff(col, p2.x);
 			}
 		} else {
 			for (int row = p1.x; row <= p2.x; row++) {
 				for (int col = p1.y; col <= p2.y; col++) {
-					pad.setLedOff(col, row, UID);
+					setLedOff(col, row);
 				}
 			}
 		}

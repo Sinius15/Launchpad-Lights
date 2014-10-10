@@ -64,12 +64,11 @@ public class LaunchpadLightCreator {
 		FileLoader.LoadFile(new File("testing.yml"));
 	}
 	
-	public static Effect createIntance(Class< ? extends Effect> effClass, int row, int col){
+	public static Effect createIntance(Class< ? extends Effect> effClass, OwnedLaunchpad pad, int row, int col){
 		try {
-			Class<?>[] argsClassArr = new Class[]{int.class, int.class};
+			Class<?>[] argsClassArr = new Class[]{OwnedLaunchpad.class, int.class, int.class};
 			Constructor<? extends Effect> constructor = effClass.getConstructor(argsClassArr);
-			return constructor.newInstance(row, col);
-			
+			return constructor.newInstance(pad, row, col);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			return null;

@@ -1,11 +1,12 @@
 package com.sinius15.lights.effects;
 
+import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
 
 public class NoneEffect extends Effect{
 
-	public NoneEffect(int row, int colomn) {
-		super(row, colomn);
+	public NoneEffect(OwnedLaunchpad pad, int row, int colomn) {
+		super(pad, row, colomn);
 	}
 
 	@Override

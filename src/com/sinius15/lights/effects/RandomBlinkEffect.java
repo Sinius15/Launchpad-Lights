@@ -21,8 +21,8 @@ public class RandomBlinkEffect extends Effect {
 	private boolean running = false;
 	private boolean[][] lights = new boolean[9][9];
 	
-	public RandomBlinkEffect(int row, int colomn) {
-		super(row, colomn);
+	public RandomBlinkEffect(OwnedLaunchpad pad, int row, int colomn) {
+		super(pad, row, colomn);
 		speed = new IntOption(5);
 		persentage = new IntOption(50);
 		persentage.setTitle("Persentage filled: ");
@@ -32,29 +32,29 @@ public class RandomBlinkEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(OwnedLaunchpad launchpad) {
+	public void buttonDown() {
 		running = true;
 		do {
-			paintLights(launchpad, false); // turn off old lights
+			paintLights(false); // turn off old lights
 			randomizeLights(); // get new lights
-			paintLights(launchpad, true); // turn on new lights
+			paintLights(true); // turn on new lights
 			try {
 				Thread.sleep(speed.getValue());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		} while (running);
-		paintLights(launchpad, false);
+		paintLights(false);
 	}
 	
-	private void paintLights(OwnedLaunchpad pad, boolean on) {
+	private void paintLights(boolean on) {
 		for (int row = 0; row < 9; row++) {
 			for (int col = 0; col < 9; col++) {
 				if (lights[row][col]) {
 					if (on)
-						pad.setLedOn(col, row, colorSelector.getValue(), UID);
+						setLedOn(col, row, colorSelector.getValue());
 					else
-						pad.setLedOff(col, row, UID);
+						setLedOff(col, row);
 				}
 			}
 		}
@@ -74,7 +74,7 @@ public class RandomBlinkEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonUp(OwnedLaunchpad launchpad) {
+	public void buttonUp() {
 		running = false;
 	}
 	

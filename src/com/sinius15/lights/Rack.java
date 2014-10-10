@@ -94,7 +94,7 @@ public class Rack extends JPanel implements ButtonListener{
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					effects[row][colomn].buttonDown(LaunchpadLightCreator.pad);
+					effects[row][colomn].buttonDown();
 				}
 			}).start();
 		
@@ -108,7 +108,7 @@ public class Rack extends JPanel implements ButtonListener{
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					effects[row][colomn].buttonUp(LaunchpadLightCreator.pad);
+					effects[row][colomn].buttonUp();
 				}
 			}).start();
 		

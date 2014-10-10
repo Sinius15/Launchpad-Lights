@@ -22,8 +22,8 @@ public class ShotEffect extends Effect {
 	@Save
 	public ComboBoxOption shapeChooser;
 	
-	public ShotEffect(int row, int colomn) {
-		super(row, colomn);
+	public ShotEffect(OwnedLaunchpad pad, int row, int colomn) {
+		super(pad, row, colomn);
 		colorChooser = new ColorOption();
 		dirChooser = new DirectionOption();
 		speedChooser = new IntOption(50);
@@ -32,18 +32,18 @@ public class ShotEffect extends Effect {
 	}
 	
 	@Override
-	public void buttonDown(OwnedLaunchpad launchpad) {
+	public void buttonDown() {
 		int color = colorChooser.getValue();
 		int curRow = row;
 		int curCol = colomn;
 		do {
-			setLedsOn(launchpad, curCol, curRow, color);
+			setLedsOn(curCol, curRow, color);
 			try {
 				Thread.sleep(speedChooser.getValue());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			setLedsOn(launchpad, curCol, curRow, Launchpad.COLOR_OFF);
+			setLedsOn(curCol, curRow, Launchpad.COLOR_OFF);
 			switch (dirChooser.getValue()) {
 				case BOT_TOP:
 					curRow--;
@@ -62,9 +62,9 @@ public class ShotEffect extends Effect {
 		} while (curCol >= 0 && curRow >= 0 && curCol <= 8 && curRow <= 8);
 	}
 	
-	private void setLedsOn(OwnedLaunchpad pad, int colomn, int row, int color) {
-		Shape.stringToShape(shapeChooser.getValue()).draw(pad, color, row, colomn,
-				dirChooser.getValue(), UID);
+	private void setLedsOn(int colomn, int row, int color) {
+		Shape.stringToShape(shapeChooser.getValue()).draw(this, color, row, colomn,
+				dirChooser.getValue());
 	}
 	
 	@Override
