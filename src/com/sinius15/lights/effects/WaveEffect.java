@@ -3,7 +3,6 @@ package com.sinius15.lights.effects;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
-import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.DirectionOption;
@@ -23,6 +22,10 @@ public class WaveEffect extends Effect{
 		color = new ColorOption();
 		speed = new IntOption(30);
 		direction = new DirectionOption();
+		
+		options.add(speed);
+		options.add(direction);
+		options.add(color);
 	}
 	
 	@Override
@@ -69,11 +72,6 @@ public class WaveEffect extends Effect{
 			default:
 				break;
 		}
-	}
-	
-	@Override
-	public Option<?>[] getOptions() {
-		return new Option<?>[]{speed, direction, color};
 	}
 	
 	private void pause(){

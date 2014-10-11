@@ -4,7 +4,6 @@ import java.awt.Point;
 
 import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
-import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.options.BooleanOption;
 import com.sinius15.lights.options.ColorOption;
@@ -31,6 +30,12 @@ public class BlockEffect extends Effect {
 		colorSelector = new ColorOption();
 		aliveOption = new KeepAliveOption();
 		showOutline = new BooleanOption("Show only outline?", false);
+		
+		options.add(leftTopCorner);
+		options.add(rightBottomCorner);
+		options.add(showOutline);
+		options.add(aliveOption);
+		options.add(colorSelector);
 	}
 	
 	@Override
@@ -114,11 +119,5 @@ public class BlockEffect extends Effect {
 				}
 			}
 		}
-	}
-	
-	@Override
-	public Option<?>[] getOptions() {
-		return new Option<?>[] { leftTopCorner, rightBottomCorner, showOutline, aliveOption,
-				colorSelector };
 	}
 }

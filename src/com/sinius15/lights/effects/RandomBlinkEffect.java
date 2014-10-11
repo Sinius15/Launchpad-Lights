@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
-import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.IntOption;
@@ -29,6 +28,10 @@ public class RandomBlinkEffect extends Effect {
 		persentage.setMin(0);
 		persentage.setMax(100);
 		colorSelector = new ColorOption();
+		
+		options.add(speed);
+		options.add(persentage);
+		options.add(colorSelector);
 	}
 	
 	@Override
@@ -86,11 +89,6 @@ public class RandomBlinkEffect extends Effect {
 	@Override
 	public String getDescription() {
 		return null;
-	}
-	
-	@Override
-	public Option<?>[] getOptions() {
-		return new Option<?>[] { speed, persentage, colorSelector };
 	}
 	
 }

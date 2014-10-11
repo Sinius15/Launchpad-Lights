@@ -66,7 +66,7 @@ public class Rack extends JPanel implements ButtonListener{
 			public void actionPerformed(ActionEvent e) {
 				Effect eff = effects[row][col];
 				Option<?>[] options = eff.getOptions();
-				if(options != null)
+				if(options != null && options.length != 0)
 					new EffectSettingsFrame(options).setVisible(true);
 			}
 		});

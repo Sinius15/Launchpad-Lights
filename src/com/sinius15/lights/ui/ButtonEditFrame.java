@@ -85,7 +85,7 @@ public class ButtonEditFrame extends JFrameLayered {
 			public void actionPerformed(ActionEvent e) {
 				Effect eff = list.getSelectedValue();
 				Option<?>[] options = eff.getOptions();
-				if(options != null)
+				if(options != null && options.length != 0)
 					new EffectSettingsFrame(options).setVisible(true);
 			}
 		});

@@ -1,29 +1,42 @@
 package com.sinius15.lights;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import com.sinius15.launchpad.OwnedLaunchpad;
+import com.sinius15.lights.options.BooleanOption;
 
 public abstract class Effect {
-	
+
 	protected int row, column;
 	protected final String UID;
+	protected ArrayList<Option<?>> options;
 	private OwnedLaunchpad launchpad;
-	
+
+	/**
+	 * wether or not to remove all layers on the button when the
+	 * {@link Effect#setLedOff(int, int)} is called
+	 */
+	@Save
+	public BooleanOption useAdvancedLight;
+
 	public Effect(OwnedLaunchpad pad, int row, int colomn) {
 		this.row = row;
 		this.column = colomn;
 		this.UID = UUID.randomUUID().toString();
 		this.launchpad = pad;
+		this.useAdvancedLight = new BooleanOption("Use advanced light system",
+				true);
+		options = new ArrayList<>();
 	}
-	
+
 	/**
 	 * The name of the Action.
 	 * 
 	 * @return the name of this action.
 	 */
 	public abstract String getName();
-	
+
 	/**
 	 * A description of this Action. Line seperator is
 	 * {@link System #lineSeparator()}
@@ -31,7 +44,7 @@ public abstract class Effect {
 	 * @return the Description.
 	 */
 	public abstract String getDescription();
-	
+
 	/**
 	 * called when the button on the launchpad is pressed. This function is
 	 * called on a sperate thread. So you can occupy this thread without any
@@ -40,8 +53,9 @@ public abstract class Effect {
 	 * @param launchpad
 	 *            the launchpad to show the action on.
 	 */
-	public void buttonDown() {};
-	
+	public void buttonDown() {
+	};
+
 	/**
 	 * called when the button on the launchpad is pressed. This function is
 	 * called on a sperate thread. So you can occupy this thread without any
@@ -50,8 +64,9 @@ public abstract class Effect {
 	 * @param launchpad
 	 *            the launchpad to show the action on.
 	 */
-	public void buttonUp() {};
-	
+	public void buttonUp() {
+	};
+
 	/**
 	 * Turns on a led on the launchpad. When {@link #COLOR_TRANSPARANT} is
 	 * selected, nothing is set!
@@ -70,7 +85,7 @@ public abstract class Effect {
 	public void setLedOn(int column, int row, int color) {
 		this.launchpad.setLedOn(column, row, color, this.UID);
 	}
-	
+
 	/**
 	 * Turns off a led on the launchpad. <br>
 	 * 
@@ -83,13 +98,18 @@ public abstract class Effect {
 	 * @author Sinius15
 	 */
 	public void setLedOff(int column, int row) {
-		this.launchpad.setLedOff(column, row, this.UID);
+		if(useAdvancedLight.getValue())
+			this.launchpad.setLedOff(column, row, this.UID);
+		this.launchpad.clearLed(column, row);
 	}
-	
+
 	/**
-	 * Colors a whole row. If the row does not exist, it will return. 
-	 * @param color the color of the led.
-	 * @param row the row to set on.
+	 * Colors a whole row. If the row does not exist, it will return.
+	 * 
+	 * @param color
+	 *            the color of the led.
+	 * @param row
+	 *            the row to set on.
 	 */
 	public void colorRow(int color, int row) {
 		if (row < 0 || row > 8)
@@ -98,11 +118,14 @@ public abstract class Effect {
 			setLedOn(i, row, color);
 		}
 	}
-	
+
 	/**
-	 * Colors a whole row. If the column does not exist, it will return. 
-	 * @param color the color of the led.
-	 * @param column the row to set on.
+	 * Colors a whole row. If the column does not exist, it will return.
+	 * 
+	 * @param color
+	 *            the color of the led.
+	 * @param column
+	 *            the row to set on.
 	 */
 	public void colorColumn(int color, int column) {
 		if (column < 0 || column > 8)
@@ -111,7 +134,7 @@ public abstract class Effect {
 			setLedOn(column, i, color);
 		}
 	}
-	
+
 	/**
 	 * Does exacly the same as {@link Effect#setLedOn(int, int, int)} but if the
 	 * coordiante not exist, it returns.
@@ -130,17 +153,19 @@ public abstract class Effect {
 	}
 	
 	/**
-	 * get an arry with the Options that this effect has.
+	 * Get the array with the Options that this effect has.
 	 * 
 	 * @return
 	 */
-	public Option<?>[] getOptions() {
-		return null;
+	public final Option<?>[] getOptions() {
+		if(!options.contains(useAdvancedLight))
+			options.add(useAdvancedLight);
+		return options.toArray(new Option<?>[options.size()]);
 	}
-	
+
 	@Override
 	public String toString() {
 		return getName();
 	}
-	
+
 }

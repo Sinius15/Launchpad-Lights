@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+/**
+ * Wooot! Layered frames!<br>
+ * @author Sinius15
+ *
+ */
 public abstract class JFrameLayered extends JFrame{
 	
 	private static final long serialVersionUID = -4159135430535541691L;
@@ -16,18 +21,16 @@ public abstract class JFrameLayered extends JFrame{
 		}
 		
 		activeLayers.add(this);
-		
 	}
 	
 	@Override
 	public void setVisible(boolean b) {
 		super.setVisible(b);
-		
-		//TODO: this is a bug...
-		if(activeLayers.size() == 0)
+		if(activeLayers.size() <= 1){
 			setLocationRelativeTo(null);
-		else
-			setLocationRelativeTo(activeLayers.get(activeLayers.size()-1));
+		}else{
+			setLocationRelativeTo(activeLayers.get(activeLayers.size()-2));
+		}
 	}
 	
 	@Override

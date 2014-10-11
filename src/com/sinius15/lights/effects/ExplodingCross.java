@@ -2,7 +2,6 @@ package com.sinius15.lights.effects;
 
 import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
-import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.IntOption;
@@ -18,6 +17,9 @@ public class ExplodingCross extends Effect{
 		super(pad, row, colomn);
 		colorSelector = new ColorOption();
 		speedSelector = new IntOption(300);
+		
+		options.add(speedSelector);
+		options.add(colorSelector);
 	}
 	
 	@Override
@@ -73,11 +75,6 @@ public class ExplodingCross extends Effect{
 	@Override
 	public String getDescription() {
 		return null;
-	}
-	
-	@Override
-	public Option<?>[] getOptions() {
-		return new Option<?>[]{speedSelector, colorSelector};
 	}
 	
 }

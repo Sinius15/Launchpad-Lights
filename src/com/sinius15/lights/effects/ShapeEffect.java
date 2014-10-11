@@ -3,7 +3,6 @@ package com.sinius15.lights.effects;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
-import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.Shape;
 import com.sinius15.lights.options.ColorOption;
@@ -27,6 +26,10 @@ public class ShapeEffect extends Effect {
 		colorChooser = new ColorOption();
 		alave = new KeepAliveOption();
 		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
+		
+		options.add(shapeChooser);
+		options.add(alave);
+		options.add(colorChooser);
 	}
 	
 	@Override
@@ -77,11 +80,6 @@ public class ShapeEffect extends Effect {
 	private void removePattern() {
 		Shape.stringToShape(shapeChooser.getValue()).draw(this, Launchpad.COLOR_OFF, row,
 				column, Direction.BOT_TOP);
-	}
-	
-	@Override
-	public Option<?>[] getOptions() {
-		return new Option<?>[] { shapeChooser, alave, colorChooser };
 	}
 	
 }

@@ -3,7 +3,6 @@ package com.sinius15.lights.effects;
 import com.sinius15.launchpad.Launchpad;
 import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.Effect;
-import com.sinius15.lights.Option;
 import com.sinius15.lights.Save;
 import com.sinius15.lights.Shape;
 import com.sinius15.lights.options.ColorOption;
@@ -29,6 +28,11 @@ public class ShotEffect extends Effect {
 		speedChooser = new IntOption(50);
 		
 		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
+		
+		options.add(dirChooser);
+		options.add(shapeChooser);		
+		options.add(speedChooser);
+		options.add(colorChooser);
 	}
 	
 	@Override
@@ -76,10 +80,4 @@ public class ShotEffect extends Effect {
 	public String getDescription() {
 		return null;
 	}
-	
-	@Override
-	public Option<?>[] getOptions() {
-		return new Option<?>[] { dirChooser, shapeChooser, speedChooser, colorChooser };
-	}
-	
 }
