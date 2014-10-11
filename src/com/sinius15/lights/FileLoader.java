@@ -50,7 +50,7 @@ public class FileLoader {
 					
 				}
 				
-				LaunchpadLightCreator.rack.buttons[row][col].colorStandardColor();
+				LaunchpadLightCreator.rack.buttons[row][col].onButtonUp();
 			}
 		}
 	}

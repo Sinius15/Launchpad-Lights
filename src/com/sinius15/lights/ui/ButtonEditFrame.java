@@ -98,7 +98,7 @@ public class ButtonEditFrame extends JFrameLayered {
 				if(newEffect.getClass().equals(NoneEffect.class))
 					newEffect = null;
 				LaunchpadLightCreator.rack.effects[row][col] = newEffect;
-				LaunchpadLightCreator.rack.buttons[row][col].colorStandardColor();
+				LaunchpadLightCreator.rack.buttons[row][col].onButtonUp();
 				dispose();
 			}
 		});

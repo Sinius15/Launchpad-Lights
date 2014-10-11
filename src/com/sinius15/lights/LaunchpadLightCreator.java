@@ -44,7 +44,6 @@ public class LaunchpadLightCreator {
 		String deviceName = (String) JOptionPane.showInputDialog(null, "Chose your launchpad!",
 		        "Launchpad Selector", JOptionPane.QUESTION_MESSAGE, null, MidiCommon.listDevices(true, false), "Launchpad S");
 		
-		
 		try {
 			pad = new OwnedLaunchpad(deviceName);
 			pad.open();
