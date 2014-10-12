@@ -162,7 +162,7 @@ public abstract class Effect {
 	 * 
 	 * @return
 	 */
-	public final Option<?>[] getOptions() {
+	public Option<?>[] getOptions() {
 		if(!options.contains(useAdvancedLight))
 			options.add(useAdvancedLight);
 		return options.toArray(new Option<?>[options.size()]);
