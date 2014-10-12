@@ -4,6 +4,12 @@ button:
             colorSelector: "-123456"
             persentage: "30"
             speed: "5"
+        1: "com.sinius15.lights.effects.BlockEffect"
+            aliveOption: "10000"
+            colorSelector: "15"
+            leftTopCorner: "0:0"
+            rightBottomCorner: "8:8"
+            showOutline: "false"
     3:  
         2: "com.sinius15.lights.effects.ShapeEffect"
             alave: "-1"

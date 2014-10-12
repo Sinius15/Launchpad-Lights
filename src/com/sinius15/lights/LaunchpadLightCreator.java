@@ -43,7 +43,8 @@ public class LaunchpadLightCreator {
 		
 		String deviceName = (String) JOptionPane.showInputDialog(null, "Chose your launchpad!",
 		        "Launchpad Selector", JOptionPane.QUESTION_MESSAGE, null, MidiCommon.listDevices(true, false), "Launchpad S");
-		
+		if(deviceName == null || deviceName.equals(""))
+			return;
 		try {
 			pad = new OwnedLaunchpad(deviceName);
 			pad.open();
@@ -60,7 +61,7 @@ public class LaunchpadLightCreator {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		FileLoader.LoadFile(new File("testing.yml"));
+		//FileLoader.LoadFile(new File("testing.yml"));
 	}
 	
 	public static Effect createIntance(Class< ? extends Effect> effClass, OwnedLaunchpad pad, int row, int col){

@@ -3,6 +3,7 @@ package com.sinius15.lights;
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import com.sinius15.lights.util.YAMLFile;
 
@@ -66,10 +67,7 @@ public class FileLoader {
 					continue;
 				data.addString("button."+row+"."+col, eff.getClass().getName());
 				Class<? extends Effect> effClass = eff.getClass();
-				for(Field field : effClass.getDeclaredFields()){
-					Annotation ann = field.getAnnotation(Save.class);
-					if(ann == null)
-						continue;
+				for(Field field : getOptionFields(effClass)){
 					try{
 						Object o = field.get(eff);
 						if(o instanceof Saveable){
@@ -94,6 +92,23 @@ public class FileLoader {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static Field[] getOptionFields(Class<? extends Effect> effClass){
+		ArrayList<Field> fields = new ArrayList<>();
+		for(Field field : effClass.getDeclaredFields()){
+			Annotation ann = field.getAnnotation(Save.class);
+			if(ann == null)
+				continue;
+			fields.add(field);
+		}
+		for(Field field : effClass.getSuperclass().getDeclaredFields()){
+			Annotation ann = field.getAnnotation(Save.class);
+			if(ann == null)
+				continue;
+			fields.add(field);
+		}
+		return fields.toArray(new Field[fields.size()]);
 	}
 	
 }

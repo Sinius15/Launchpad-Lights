@@ -3,6 +3,7 @@ package com.sinius15.lights;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.sinius15.launchpad.Launchpad;
 import com.sinius15.launchpad.OwnedLaunchpad;
 import com.sinius15.lights.options.BooleanOption;
 
@@ -83,7 +84,10 @@ public abstract class Effect {
 	 * @author Sinius15
 	 */
 	public void setLedOn(int column, int row, int color) {
-		this.launchpad.setLedOn(column, row, color, this.UID);
+		if(color == Launchpad.COLOR_OFF)
+			setLedOff(column, row);
+		else
+			this.launchpad.setLedOn(column, row, color, this.UID);
 	}
 
 	/**
@@ -100,7 +104,8 @@ public abstract class Effect {
 	public void setLedOff(int column, int row) {
 		if(useAdvancedLight.getValue())
 			this.launchpad.setLedOff(column, row, this.UID);
-		this.launchpad.clearLed(column, row);
+		else
+			this.launchpad.clearLed(column, row);
 	}
 
 	/**
