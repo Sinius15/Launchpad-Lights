@@ -19,13 +19,13 @@ import com.sinius15.lights.ui.ColoredButton;
 import com.sinius15.lights.ui.EffectSettingsFrame;
 
 public class Rack extends JPanel implements ButtonListener{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public ColoredButton[][] buttons = new ColoredButton[9][9];
-	
+
 	public Effect[][] effects = new Effect[9][9]; //row, col
-			
+
 	public Rack() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -33,7 +33,7 @@ public class Rack extends JPanel implements ButtonListener{
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
+
 		for(int x = 0; x < 9; x++){
 			for(int y = 0; y < 9; y++){
 				if(x == 8 && y == 0)
@@ -42,7 +42,7 @@ public class Rack extends JPanel implements ButtonListener{
 			}
 		}
 	}
-	
+
 	private void addButton(final int col, final int row){
 		ColoredButton newBtn = new ColoredButton(row,col);
 		newBtn.setForeground(Color.black);
@@ -51,7 +51,7 @@ public class Rack extends JPanel implements ButtonListener{
 		newGbc.insets = new Insets(0, 0, 5, 5);
 		newGbc.gridx = col;
 		newGbc.gridy = row;
-		
+
 		newBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -71,7 +71,7 @@ public class Rack extends JPanel implements ButtonListener{
 			}
 		});
 		p.add(item);
-		
+
 		newBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -81,7 +81,7 @@ public class Rack extends JPanel implements ButtonListener{
 				super.mouseReleased(e);
 			}
 		});
-		
+
 		add(newBtn, newGbc);
 		buttons[row][col] = newBtn;
 	}
@@ -97,7 +97,7 @@ public class Rack extends JPanel implements ButtonListener{
 					effects[row][colomn].buttonDown();
 				}
 			}).start();
-		
+
 	}
 
 	@Override
@@ -111,6 +111,6 @@ public class Rack extends JPanel implements ButtonListener{
 					effects[row][colomn].buttonUp();
 				}
 			}).start();
-		
+
 	}
 }

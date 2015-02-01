@@ -21,12 +21,12 @@ import com.sinius15.lights.effects.NoneEffect;
 public class ButtonEditFrame extends JFrameLayered {
 
 	private static final long serialVersionUID = 6776358648201227305L;
-	
+
 	private JPanel contentPane;
 	private JList<Effect> list;
-	
+
 	int row, col;
-	
+
 	public ButtonEditFrame(int row_, int col_) {
 		this.row = row_;
 		this.col = col_;
@@ -37,28 +37,28 @@ public class ButtonEditFrame extends JFrameLayered {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
-		
+
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setResizeWeight(0.8);
 		panel.add(splitPane, BorderLayout.CENTER);
-		
+
 		JPanel panel_1 = new JPanel();
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		panel_1.add(scrollPane, BorderLayout.CENTER);
-		
+
 		Effect curEffect = LaunchpadLightCreator.rack.effects[row][col];
 		int selectedListItem = 0;
-		
+
 		Effect[] effects = new Effect[LaunchpadLightCreator.effects.size()];
-		
+
 		for(int i = 0; i < LaunchpadLightCreator.effects.size(); i++){
 			Class<? extends Effect> effectClass = LaunchpadLightCreator.effects.get(i);
 			if(curEffect != null && curEffect.getClass().equals(effectClass)){
@@ -70,16 +70,16 @@ public class ButtonEditFrame extends JFrameLayered {
 		}
 		list = new JList<Effect>();
 		list = new JList<Effect>(effects);
-		
+
 		list.setSelectedIndex(selectedListItem);
 		scrollPane.setViewportView(list);
-		
+
 		JPanel panel_2 = new JPanel();
 		splitPane.setRightComponent(panel_2);
-		
+
 		JLabel lblDescription = new JLabel("Description");
 		panel_2.add(lblDescription);
-		
+
 		JButton btnEffectPreferences = new JButton("Effect Settings");
 		btnEffectPreferences.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,7 +90,7 @@ public class ButtonEditFrame extends JFrameLayered {
 			}
 		});
 		panel_2.add(btnEffectPreferences);
-		
+
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,5 +104,5 @@ public class ButtonEditFrame extends JFrameLayered {
 		});
 		panel_2.add(btnSave);
 	}
-	
+
 }

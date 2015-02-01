@@ -1,5 +1,6 @@
 package com.sinius15.lights;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -33,7 +34,7 @@ public abstract class Effect {
 
 	/**
 	 * The name of the Action.
-	 * 
+	 *
 	 * @return the name of this action.
 	 */
 	public abstract String getName();
@@ -41,7 +42,7 @@ public abstract class Effect {
 	/**
 	 * A description of this Action. Line seperator is
 	 * {@link System #lineSeparator()}
-	 * 
+	 *
 	 * @return the Description.
 	 */
 	public abstract String getDescription();
@@ -50,7 +51,7 @@ public abstract class Effect {
 	 * called when the button on the launchpad is pressed. This function is
 	 * called on a sperate thread. So you can occupy this thread without any
 	 * problems.
-	 * 
+	 *
 	 * @param launchpad
 	 *            the launchpad to show the action on.
 	 */
@@ -61,7 +62,7 @@ public abstract class Effect {
 	 * called when the button on the launchpad is pressed. This function is
 	 * called on a sperate thread. So you can occupy this thread without any
 	 * problems.
-	 * 
+	 *
 	 * @param launchpad
 	 *            the launchpad to show the action on.
 	 */
@@ -71,7 +72,7 @@ public abstract class Effect {
 	/**
 	 * Turns on a led on the launchpad. When {@link #COLOR_TRANSPARANT} is
 	 * selected, nothing is set!
-	 * 
+	 *
 	 * @param column
 	 *            the colomn on the launchpad where the left colomn is 0 and the
 	 *            right colomn with the round buttons is 8
@@ -92,7 +93,7 @@ public abstract class Effect {
 
 	/**
 	 * Turns off a led on the launchpad. <br>
-	 * 
+	 *
 	 * @param column
 	 *            the colomn on the launchpad where the left colomn is 0 and the
 	 *            right colomn with the round buttons is 8
@@ -110,7 +111,7 @@ public abstract class Effect {
 
 	/**
 	 * Colors a whole row. If the row does not exist, it will return.
-	 * 
+	 *
 	 * @param color
 	 *            the color of the led.
 	 * @param row
@@ -126,7 +127,7 @@ public abstract class Effect {
 
 	/**
 	 * Colors a whole row. If the column does not exist, it will return.
-	 * 
+	 *
 	 * @param color
 	 *            the color of the led.
 	 * @param column
@@ -143,7 +144,7 @@ public abstract class Effect {
 	/**
 	 * Does exacly the same as {@link Effect#setLedOn(int, int, int)} but if the
 	 * coordiante not exist, it returns.
-	 * 
+	 *
 	 * @param row
 	 *            the row on the launchpad.
 	 * @param column
@@ -156,21 +157,35 @@ public abstract class Effect {
 			return;
 		setLedOn(column, row, color);
 	}
-	
-	/**
-	 * Get the array with the Options that this effect has.
-	 * 
-	 * @return
-	 */
-	public Option<?>[] getOptions() {
-		if(!options.contains(useAdvancedLight))
-			options.add(useAdvancedLight);
-		return options.toArray(new Option<?>[options.size()]);
-	}
 
 	@Override
 	public String toString() {
 		return getName();
+	}
+
+	public final Option<?>[] getOptions(){
+		Field[] optionFields = FileLoader.getOptionFields(this.getClass());
+		ArrayList<Option<?>> out = new ArrayList<>();
+
+		for(int i = 0; i < optionFields.length; i++){
+			try{
+				Object o = optionFields[i].get(this);
+				if(o == null)
+					continue;
+				if (o instanceof Option<?>) {
+					Option<?> option = (Option<?>) o;
+					out.add(option);
+				} else {
+					throw new IllegalArgumentException("The variable "
+							+ optionFields[i].getName() + " is not Saveable.");
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("Something went verry wrong.");
+				return null;
+			}
+		}
+		return out.toArray(new Option<?>[out.size()]);
 	}
 
 }

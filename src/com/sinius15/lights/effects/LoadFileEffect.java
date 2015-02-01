@@ -9,26 +9,28 @@ import com.sinius15.lights.Save;
 import com.sinius15.lights.options.FileOption;
 
 public class LoadFileEffect extends Effect {
-	
+
 	@Save
 	public FileOption fileChooser;
-	
+
 	public LoadFileEffect(OwnedLaunchpad pad, int row, int colomn) {
 		super(pad, row, colomn);
 		fileChooser = new FileOption();
 		options.add(fileChooser);
+
+		useAdvancedLight = null;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Load File";
 	}
-	
+
 	@Override
 	public String getDescription() {
 		return null;
 	}
-	
+
 	@Override
 	public void buttonDown() {
 		FileLoader.LoadFile(new File(fileChooser.getValue()));

@@ -9,15 +9,15 @@ import com.sinius15.lights.util.YAMLFile;
 
 /**
  * The class that provides functionality for loading data from a save file.
- * 
+ *
  * @author Sinius15
- * 
+ *
  */
 public class FileLoader {
 
 	/**
 	 * Loads a set from a file.
-	 * 
+	 *
 	 * @param file
 	 *            The file to load.
 	 */
@@ -75,7 +75,7 @@ public class FileLoader {
 
 	/**
 	 * Saves a set to a file.
-	 * 
+	 *
 	 * @param file
 	 *            The file to save the set to.
 	 */
@@ -123,7 +123,7 @@ public class FileLoader {
 	/**
 	 * Searches for fields that have a @save annotation present. Search in the
 	 * class ánd in the superclass.
-	 * 
+	 *
 	 * @param effClass
 	 *            the class to scan for valid fields.
 	 * @return A list with all Fields that have annotation {@link Save}.
