@@ -10,8 +10,18 @@ import com.sinius15.lights.options.BooleanOption;
 
 public abstract class Effect {
 
+	/**
+	 *  The Row and Column where the phisical button is located.
+	 */
 	protected int row, column;
+	
+	/**
+	 * The uniqe identifier that is used for the advanced
+	 * light system. This String is used to identifie the owner of a light.
+	 * If a light is turned on, this uid is saved together with the led.
+	 */
 	protected final String UID;
+	
 	protected ArrayList<Option<?>> options;
 	private OwnedLaunchpad launchpad;
 
@@ -163,6 +173,10 @@ public abstract class Effect {
 		return getName();
 	}
 
+	/**
+	 * Get all options of this Effect. 
+	 * @return A list with options.
+	 */
 	public final Option<?>[] getOptions(){
 		Field[] optionFields = FileLoader.getOptionFields(this.getClass());
 		ArrayList<Option<?>> out = new ArrayList<>();

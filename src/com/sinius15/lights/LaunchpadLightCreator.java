@@ -41,6 +41,9 @@ public class LaunchpadLightCreator {
 	 */
 	public static Rack rack;
 
+	/*
+	 * The main method. Here the program is started.
+	 */
 	public static void main(String[] args) {
 
 		Shape.init();
