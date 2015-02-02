@@ -31,6 +31,12 @@ public abstract class Effect {
 	@Save
 	public BooleanOption useAdvancedLight;
 
+	/**
+	 * Constructor of the Effect. Initializes the options.
+	 * @param pad The OwnedLaunchpad.
+	 * @param row The row on the launchpad.
+	 * @param colomn The column on the launchpad.
+	 */
 	public Effect(OwnedLaunchpad pad, int row, int colomn) {
 		this.row = row;
 		this.column = colomn;

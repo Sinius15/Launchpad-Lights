@@ -10,19 +10,50 @@ import com.sinius15.lights.options.ColorOption;
 import com.sinius15.lights.options.KeepAliveOption;
 import com.sinius15.lights.options.PointOption;
 
+/**
+ * The effect that shows a block on the launchpad.
+ * The x, y, width, height and color are configurable.
+ * @author Sinius15
+ */
 public class BlockEffect extends Effect {
 	
+	/**
+	 * Where are the corners located?
+	 */
 	@Save
 	public PointOption leftTopCorner, rightBottomCorner;
+	
+	/**
+	 * What color does the block have?
+	 */
 	@Save
 	public ColorOption colorSelector;
+	
+	/**
+	 * Wether or not the block should be shown when the button is released.
+	 */
 	@Save
 	public KeepAliveOption aliveOption;
+	
+	/**
+	 * Wether or not to only show the outline of the block.
+	 */
 	@Save
 	public BooleanOption showOutline;
 	
-	private boolean isButtonDown = false, removeLampsOnButtonUp = false;
+	/**
+	 * Is the button at this moment down or up?
+	 */
+	private boolean isButtonDown = false;
 	
+	/**
+	 * When the button is released, should the colors be removed?
+	 */
+	private boolean removeLampsOnButtonUp = false;
+	
+	/**
+	 * See {@link Effect#Effect(OwnedLaunchpad, int, int)}
+	 */
 	public BlockEffect(OwnedLaunchpad pad, int row, int colomn) {
 		super(pad, row, colomn);
 		leftTopCorner = new PointOption("Left top corner of the block:");
@@ -32,16 +63,25 @@ public class BlockEffect extends Effect {
 		showOutline = new BooleanOption("Show only outline?", false);
 	}
 	
+	/**
+	 * See {@link Effect#getName()}
+	 */
 	@Override
 	public String getName() {
 		return "Block";
 	}
 	
+	/**
+	 * See {@link Effect#getDescription()}
+	 */
 	@Override
 	public String getDescription() {
-		return null;
+		return "The effect that shows a block on the launchpad. The x, y, width, height and color are configurable.";
 	}
 	
+	/**
+	 * See {@link Effect#buttonDown()}
+	 */
 	@Override
 	public void buttonDown() {
 		isButtonDown = true;
@@ -63,6 +103,9 @@ public class BlockEffect extends Effect {
 		
 	}
 	
+	/**
+	 * See {@link Effect#buttonUp()}
+	 */
 	@Override
 	public void buttonUp() {
 		isButtonDown = false;
@@ -72,6 +115,9 @@ public class BlockEffect extends Effect {
 		
 	}
 	
+	/**
+	 * Show the lights on the launchpad.
+	 */
 	private void showLights() {
 		Point p1 = leftTopCorner.getValue();
 		Point p2 = rightBottomCorner.getValue();
@@ -93,6 +139,9 @@ public class BlockEffect extends Effect {
 		}
 	}
 	
+	/**
+	 * Remove the lights on the launchpad.
+	 */
 	private void removeLight() {
 		Point p1 = leftTopCorner.getValue();
 		Point p2 = rightBottomCorner.getValue();
