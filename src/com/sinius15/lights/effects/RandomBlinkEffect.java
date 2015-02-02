@@ -28,10 +28,6 @@ public class RandomBlinkEffect extends Effect {
 		persentage.setMin(0);
 		persentage.setMax(100);
 		colorSelector = new ColorOption();
-		
-		options.add(speed);
-		options.add(persentage);
-		options.add(colorSelector);
 	}
 	
 	@Override

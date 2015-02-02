@@ -28,11 +28,6 @@ public class ShotEffect extends Effect {
 		speedChooser = new IntOption(50);
 		
 		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
-		
-		options.add(dirChooser);
-		options.add(shapeChooser);		
-		options.add(speedChooser);
-		options.add(colorChooser);
 	}
 	
 	@Override

@@ -17,9 +17,6 @@ public class ExplodingCross extends Effect{
 		super(pad, row, colomn);
 		colorSelector = new ColorOption();
 		speedSelector = new IntOption(300);
-		
-		options.add(speedSelector);
-		options.add(colorSelector);
 	}
 	
 	@Override

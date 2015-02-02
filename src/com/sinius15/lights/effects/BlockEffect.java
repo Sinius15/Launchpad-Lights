@@ -30,12 +30,6 @@ public class BlockEffect extends Effect {
 		colorSelector = new ColorOption();
 		aliveOption = new KeepAliveOption();
 		showOutline = new BooleanOption("Show only outline?", false);
-		
-		options.add(leftTopCorner);
-		options.add(rightBottomCorner);
-		options.add(showOutline);
-		options.add(aliveOption);
-		options.add(colorSelector);
 	}
 	
 	@Override

@@ -22,10 +22,6 @@ public class WaveEffect extends Effect{
 		color = new ColorOption();
 		speed = new IntOption(30);
 		direction = new DirectionOption();
-		
-		options.add(speed);
-		options.add(direction);
-		options.add(color);
 	}
 	
 	@Override

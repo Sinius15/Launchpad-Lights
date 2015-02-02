@@ -22,7 +22,6 @@ public abstract class Effect {
 	 */
 	protected final String UID;
 	
-	protected ArrayList<Option<?>> options;
 	private OwnedLaunchpad launchpad;
 
 	/**
@@ -39,7 +38,6 @@ public abstract class Effect {
 		this.launchpad = pad;
 		this.useAdvancedLight = new BooleanOption("Use advanced light system",
 				true);
-		options = new ArrayList<>();
 	}
 
 	/**
