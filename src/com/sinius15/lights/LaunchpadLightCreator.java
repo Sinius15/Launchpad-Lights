@@ -19,6 +19,7 @@ import com.sinius15.lights.effects.RandomBlinkEffect;
 import com.sinius15.lights.effects.ShapeEffect;
 import com.sinius15.lights.effects.ShotEffect;
 import com.sinius15.lights.effects.WaveEffect;
+import com.sinius15.lights.effects.window.WindowInitEffect;
 import com.sinius15.lights.ui.LightFrame;
 
 public class LaunchpadLightCreator {
@@ -53,6 +54,7 @@ public class LaunchpadLightCreator {
 		effects.add(ExplodingCross.class);
 		effects.add(LoadFileEffect.class);
 		effects.add(RandomBlinkEffect.class);
+		effects.add(WindowInitEffect.class);
 
 		String deviceName = (String) JOptionPane.showInputDialog(null,
 				"Chose your launchpad!", "Launchpad Selector",
@@ -80,7 +82,7 @@ public class LaunchpadLightCreator {
 
 	/**
 	 * Creates a {@link Effect} instance of the given class.
-	 * 
+	 *
 	 * @param effClass
 	 *            The class to construct the Effect with.
 	 * @param row
@@ -105,7 +107,7 @@ public class LaunchpadLightCreator {
 
 	/**
 	 * Searches for a class that extends {@link Effect}.
-	 * 
+	 *
 	 * @param className
 	 *            The name of the class to search for.
 	 * @return a class with the specified classname or null when no class was
