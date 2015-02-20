@@ -104,6 +104,8 @@ public class FileLoader {
 				for (Field field : getOptionFields(effClass)) {
 					try {
 						Object o = field.get(eff);
+						if(o == null)
+							continue;
 						if (o instanceof Saveable) {
 							Saveable toSave = (Saveable) o;
 							data.addString("button." + row + "." + col + "."

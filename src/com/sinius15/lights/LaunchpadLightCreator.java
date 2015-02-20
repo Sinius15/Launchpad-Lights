@@ -20,6 +20,7 @@ import com.sinius15.lights.effects.ShapeEffect;
 import com.sinius15.lights.effects.ShotEffect;
 import com.sinius15.lights.effects.WaveEffect;
 import com.sinius15.lights.effects.window.WindowDisableEffect;
+import com.sinius15.lights.effects.window.WindowDrawRectangleEffect;
 import com.sinius15.lights.effects.window.WindowInitEffect;
 import com.sinius15.lights.ui.LightFrame;
 
@@ -60,6 +61,7 @@ public class LaunchpadLightCreator {
 		effects.add(RandomBlinkEffect.class);
 		effects.add(WindowInitEffect.class);
 		effects.add(WindowDisableEffect.class);
+		effects.add(WindowDrawRectangleEffect.class);
 
 		String deviceName = (String) JOptionPane.showInputDialog(null,
 				"Chose your launchpad!", "Launchpad Selector",
@@ -82,7 +84,7 @@ public class LaunchpadLightCreator {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		FileLoader.LoadFile(new File("testing.yml"));
+		FileLoader.LoadFile(new File("windowExample.yml"));
 	}
 
 	/**

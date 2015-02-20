@@ -1,8 +1,12 @@
 package com.sinius15.lights.effects.window;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.Rectangle;
 import java.util.HashMap;
+
+import javax.swing.JPanel;
 
 public class WindowManager {
 
@@ -15,10 +19,15 @@ public class WindowManager {
 
 		Rectangle bounds = device.getDefaultConfiguration().getBounds();
 
-		ImagePane drawer = new ImagePane(bounds.width, bounds.height);
+		JPanel drawer = new JPanel();
+		drawer.setBounds(0,  0, bounds.width, bounds.height);
 		FullScreenFrame d = new FullScreenFrame(bounds);
 		d.setContentPane(drawer);
 		visableFrames.put(device.getIDstring(), d);
+
+		d.getContentPane().getGraphics().setColor(Color.black);
+		d.getContentPane().getGraphics().fillRect(0, 0, bounds.width, bounds.height);
+
 	}
 
 	public static void disableSCreen(GraphicsDevice device){
@@ -28,10 +37,10 @@ public class WindowManager {
 		visableFrames.remove(device.getIDstring());
 	}
 
-	public static ImagePane getDrawPane(GraphicsDevice device){
+	public static Graphics2D getDrawPane(GraphicsDevice device){
 		if(!visableFrames.containsKey(device.getIDstring()))
 			return null;
-		return (ImagePane) visableFrames.get(device.getIDstring()).getContentPane();
+		return  (Graphics2D) visableFrames.get(device.getIDstring()).getContentPane().getGraphics();
 	}
 
 

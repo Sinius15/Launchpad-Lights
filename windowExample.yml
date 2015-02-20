@@ -1,0 +1,8 @@
+button:  
+    0:  
+        0: "com.sinius15.lights.effects.window.WindowInitEffect"
+            initAll: "true"
+            selectedScreen: "\Display1"
+        1: "com.sinius15.lights.effects.window.WindowDisableEffect"
+            initAll: "true"
+            selectedScreen: "\Display1"
