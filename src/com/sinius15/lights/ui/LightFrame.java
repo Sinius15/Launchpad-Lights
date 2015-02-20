@@ -19,26 +19,30 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 public class LightFrame extends JFrameLayered {
-	
+
 	private static final long serialVersionUID = 2665207274016108428L;
 	private JPanel contentPane;
 	private LightFrame instance = this;
-	
+
 	public LightFrame(Rack rack) {
 		setTitle("LightFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 530, 328);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
-		
+
 		JMenuItem mntmSave = new JMenuItem("Save");
 		mntmSave.addActionListener(saveListener);
+
+		JMenuItem mntmNew = new JMenuItem("New");
+		mntmNew.addActionListener(newListner);
+		mnFile.add(mntmNew);
 		mnFile.add(mntmSave);
-		
+
 		JMenuItem mntmLoad = new JMenuItem("Load");
 		mntmLoad.addActionListener(loadListener);
 		mnFile.add(mntmLoad);
@@ -46,11 +50,11 @@ public class LightFrame extends JFrameLayered {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		contentPane.add(rack, BorderLayout.CENTER);
 		pack();
 	}
-	
+
 	private ActionListener loadListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			JFileChooser filechooser = new JFileChooser();
@@ -64,7 +68,7 @@ public class LightFrame extends JFrameLayered {
 			FileLoader.LoadFile(new File(path));
 		}
 	};
-	
+
 	private ActionListener saveListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			JFileChooser filechooser = new JFileChooser();
@@ -78,5 +82,11 @@ public class LightFrame extends JFrameLayered {
 			FileLoader.SaveFile(new File(path));
 		}
 	};
-	
+
+	private ActionListener newListner = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			FileLoader.emptyProject();
+		}
+	};
+
 }

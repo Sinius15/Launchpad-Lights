@@ -15,6 +15,16 @@ import com.sinius15.lights.util.YAMLFile;
  */
 public class FileLoader {
 
+	public static void emptyProject(){
+		for (int row = 0; row < 9; row++) {
+			for (int col = 0; col < 9; col++) {
+				LaunchpadLightCreator.rack.effects[row][col] = null;
+				if(LaunchpadLightCreator.rack.buttons[row][col] != null)
+					LaunchpadLightCreator.rack.buttons[row][col].onButtonUp();
+			}
+		}
+	}
+
 	/**
 	 * Loads a set from a file.
 	 *

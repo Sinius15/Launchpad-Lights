@@ -1,6 +1,8 @@
 package com.sinius15.lights;
 
+import java.lang.instrument.IllegalClassFormatException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -14,14 +16,14 @@ public abstract class Effect {
 	 *  The Row and Column where the phisical button is located.
 	 */
 	protected int row, column;
-	
+
 	/**
 	 * The uniqe identifier that is used for the advanced
 	 * light system. This String is used to identifie the owner of a light.
 	 * If a light is turned on, this uid is saved together with the led.
 	 */
 	protected final String UID;
-	
+
 	private OwnedLaunchpad launchpad;
 
 	/**
@@ -178,7 +180,7 @@ public abstract class Effect {
 	}
 
 	/**
-	 * Get all options of this Effect. 
+	 * Get all options of this Effect.
 	 * @return A list with options.
 	 */
 	public final Option<?>[] getOptions(){
@@ -187,6 +189,8 @@ public abstract class Effect {
 
 		for(int i = 0; i < optionFields.length; i++){
 			try{
+				if(!Modifier.isPublic(optionFields[i].getModifiers()))
+					throw new IllegalClassFormatException("The saveable options should always be public!");
 				Object o = optionFields[i].get(this);
 				if(o == null)
 					continue;

@@ -9,7 +9,7 @@ import com.sinius15.lights.Save;
 import com.sinius15.lights.options.BooleanOption;
 import com.sinius15.lights.options.ScreenSelectOption;
 
-public class WindowInitEffect extends Effect {
+public class WindowDisableEffect extends Effect {
 
 	@Save
 	public BooleanOption initAll;
@@ -17,32 +17,32 @@ public class WindowInitEffect extends Effect {
 	@Save
 	public ScreenSelectOption selectedScreen;
 
-	public WindowInitEffect(OwnedLaunchpad pad, int row, int colomn) {
+	public WindowDisableEffect(OwnedLaunchpad pad, int row, int colomn) {
 		super(pad, row, colomn);
 		useAdvancedLight = null;
 
 		selectedScreen = new ScreenSelectOption();
-		initAll = new BooleanOption("Init all screens", false);
+		initAll = new BooleanOption("Disable all screens", false);
 	}
 
 	@Override
 	public String getName() {
-		return "Initalize Window";
+		return "Disable Window";
 	}
 
 	@Override
 	public String getDescription() {
-		return "initializes the display.";
+		return "Disable the display(s).";
 	}
 
 	@Override
 	public void buttonDown() {
 		if(initAll.getValue()){
 			for(GraphicsDevice device : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()){
-				WindowManager.createScreen(device);
+				WindowManager.disableSCreen(device);
 			}
 		}else{
-			WindowManager.createScreen(selectedScreen.getValue());
+			WindowManager.disableSCreen(selectedScreen.getValue());
 		}
 
 	}

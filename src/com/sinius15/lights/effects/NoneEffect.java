@@ -7,6 +7,7 @@ public class NoneEffect extends Effect{
 
 	public NoneEffect(OwnedLaunchpad pad, int row, int colomn) {
 		super(pad, row, colomn);
+		useAdvancedLight = null;
 	}
 
 	@Override
