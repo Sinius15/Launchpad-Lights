@@ -26,10 +26,6 @@ public class ShapeEffect extends Effect {
 		colorChooser = new ColorOption();
 		alave = new KeepAliveOption();
 		shapeChooser = new ComboBoxOption("Shape", Shape.shapeStrings, Shape.shapes[0].getName());
-		
-		options.add(shapeChooser);
-		options.add(alave);
-		options.add(colorChooser);
 	}
 	
 	@Override

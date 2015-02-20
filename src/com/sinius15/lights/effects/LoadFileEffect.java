@@ -16,7 +16,6 @@ public class LoadFileEffect extends Effect {
 	public LoadFileEffect(OwnedLaunchpad pad, int row, int colomn) {
 		super(pad, row, colomn);
 		fileChooser = new FileOption();
-		options.add(fileChooser);
 
 		useAdvancedLight = null;
 	}
