@@ -32,6 +32,10 @@ public class LoadFileEffect extends Effect {
 
 	@Override
 	public void buttonDown() {
-		FileLoader.LoadFile(new File(fileChooser.getValue()));
+		try{
+			FileLoader.LoadFile(new File(fileChooser.getValue()));
+		}catch(Exception e){
+			System.out.println("could not load file. Sorry");
+		}
 	}
 }

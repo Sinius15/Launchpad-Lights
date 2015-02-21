@@ -15,7 +15,7 @@ import com.sinius15.lights.LaunchpadLightCreator;
  * react accordingly. This class depends on the
  * {@link LaunchpadLightCreator#rack} array. If this array is not yet
  * initialized, this class may cause some trouble.
- * 
+ *
  * @author Sinius15
  */
 public class ColoredButton extends JButton {
@@ -76,7 +76,7 @@ public class ColoredButton extends JButton {
 	/**
 	 * Initializes a new instance of the ColoredButton class. See
 	 * {@link ColoredButton} for information about this class.
-	 * 
+	 *
 	 * @param row
 	 *            The row of the button on the phisical launchpad that this
 	 *            virtual button represents.
@@ -102,6 +102,7 @@ public class ColoredButton extends JButton {
 			setForeground(FORGROUND_DEFAULT_BUTTON_DOWN);
 			setBackground(BACKGROUND_DEFAULT_BUTTON_DOWN);
 		}
+		revalidate();
 	}
 
 	/**
@@ -117,6 +118,7 @@ public class ColoredButton extends JButton {
 			setForeground(FORGROUND_DEFAULT);
 			setBackground(BACKGROUND_DEFAULT);
 		}
+		revalidate();
 	}
 
 	/**
