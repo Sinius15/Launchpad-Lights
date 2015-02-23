@@ -1,5 +1,6 @@
 package com.sinius15.lights.effects.window;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.sinius15.launchpad.OwnedLaunchpad;
@@ -43,22 +44,19 @@ public class WindowDrawRectangleEffect extends Effect {
 
 	@Override
 	public void buttonDown() {
-		Graphics2D g = WindowManager.getDrawGraphics(screenSelector.getValue());
-		if (g == null)
-			return;
-		g.setColor(onColor.getValue());
-		g.fillRect(leftTopPoint.getValue().x, leftTopPoint.getValue().y,
-				rightBottomPoint.getValue().x - leftTopPoint.getValue().x,
-				rightBottomPoint.getValue().y - leftTopPoint.getValue().y);
-		WindowManager.repaintScreens();
+		draw(onColor.getValue());
 	}
 
 	@Override
 	public void buttonUp() {
+		draw(offColor.getValue());
+	}
+	
+	private void draw(Color color){
 		Graphics2D g = WindowManager.getDrawGraphics(screenSelector.getValue());
 		if (g == null)
 			return;
-		g.setColor(offColor.getValue());
+		g.setColor(color);
 		g.fillRect(leftTopPoint.getValue().x, leftTopPoint.getValue().y,
 				rightBottomPoint.getValue().x - leftTopPoint.getValue().x,
 				rightBottomPoint.getValue().y - leftTopPoint.getValue().y);
