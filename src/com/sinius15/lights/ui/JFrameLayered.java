@@ -10,19 +10,19 @@ import javax.swing.JFrame;
  *
  */
 public abstract class JFrameLayered extends JFrame{
-	
+
 	private static final long serialVersionUID = -4159135430535541691L;
-	
+
 	private static ArrayList<JFrameLayered> activeLayers = new ArrayList<>();
-	
+
 	public JFrameLayered(){
 		for(JFrameLayered l : activeLayers){
 			l.setEnabled(false);
 		}
-		
+
 		activeLayers.add(this);
 	}
-	
+
 	@Override
 	public void setVisible(boolean b) {
 		super.setVisible(b);
@@ -32,7 +32,7 @@ public abstract class JFrameLayered extends JFrame{
 			setLocationRelativeTo(activeLayers.get(activeLayers.size()-2));
 		}
 	}
-	
+
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -43,5 +43,9 @@ public abstract class JFrameLayered extends JFrame{
 		if(activeLayers.size() > 0)
 			activeLayers.get(activeLayers.size()-1).setEnabled(true);
 	}
-	
+
+	public static JFrameLayered getTopFrame(){
+		return activeLayers.get(activeLayers.size()-1);
+	}
+
 }

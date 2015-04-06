@@ -1,49 +1,49 @@
 package com.sinius15.lights.options;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 
 import com.sinius15.lights.Option;
+import com.sinius15.lights.ui.JFrameLayered;
 
 public class RGBOption extends Option<Color> {
 
 	private String title;
 	private JPanel panel;
-	private JSpinner rSpin, gSpin, bSpin;
+	private JButton showSelectorBtn;
+
+	private Color color = Color.black;
 
 	public RGBOption(String title){
 		this.title = title;
 
-		rSpin = new JSpinner(new SpinnerNumberModel(0, 0, 255, 1));
-		gSpin = new JSpinner(new SpinnerNumberModel(0, 0, 255, 1));
-		bSpin = new JSpinner(new SpinnerNumberModel(0, 0, 255, 1));
+		showSelectorBtn = new JButton("Select Color...");
+		showSelectorBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				color = JColorChooser.showDialog(JFrameLayered.getTopFrame(), "Select Color", getValue());
+			}
+		});
 
 		panel = new JPanel();
-
-		panel.add(new JLabel("R"));
-		panel.add(rSpin);
-		panel.add(new JLabel("G"));
-		panel.add(gSpin);
-		panel.add(new JLabel("B"));
-		panel.add(bSpin);
+		panel.add(showSelectorBtn);
 	}
 
 	@Override
 	public String getSaveData() {
-		return Integer.toString(new Color((int)rSpin.getValue(), (int)gSpin.getValue(),(int)bSpin.getValue()).getRGB());
+		return Integer.toString(color.getRGB());
 	}
 
 	@Override
 	public void initFromSaveData(String saveData) {
-		Color color = new Color(Integer.valueOf(saveData));
-		rSpin.setValue(color.getRed());
-		gSpin.setValue(color.getGreen());
-		bSpin.setValue(color.getBlue());
+		this.color = new Color(Integer.valueOf(saveData));
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class RGBOption extends Option<Color> {
 
 	@Override
 	public Color getValue() {
-		return new Color((int)rSpin.getValue(), (int)gSpin.getValue(),(int)bSpin.getValue());
+		return color;
 	}
 
 }
