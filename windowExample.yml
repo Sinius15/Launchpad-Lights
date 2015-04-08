@@ -13,6 +13,13 @@ button:
             onColor: "-65536"
             rightBottomPoint: "1920:1080"
             screenSelector: "\Display1"
+        4: "com.sinius15.lights.effects.window.WindowDrawTextEffect"
+            font: "Dosis Regular-BOLDITALIC-72"
+            offColor: "-16777216"
+            onColor: "-13434625"
+            position: "100:100"
+            screenSelector: "\Display1"
+            text: "Hello World"
     5:  
         3: "com.sinius15.lights.effects.RandomBlinkEffect"
             colorSelector: "31"

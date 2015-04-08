@@ -22,6 +22,7 @@ import com.sinius15.lights.effects.WaveEffect;
 import com.sinius15.lights.effects.window.WindowDisableEffect;
 import com.sinius15.lights.effects.window.WindowDrawOvalEffect;
 import com.sinius15.lights.effects.window.WindowDrawRectangleEffect;
+import com.sinius15.lights.effects.window.WindowDrawTextEffect;
 import com.sinius15.lights.effects.window.WindowInitEffect;
 import com.sinius15.lights.ui.LightFrame;
 
@@ -64,6 +65,7 @@ public class LaunchpadLightCreator {
 		effects.add(WindowDisableEffect.class);
 		effects.add(WindowDrawRectangleEffect.class);
 		effects.add(WindowDrawOvalEffect.class);
+		effects.add(WindowDrawTextEffect.class);
 
 		String deviceName = (String) JOptionPane.showInputDialog(null,
 				"Chose your launchpad!", "Launchpad Selector",
